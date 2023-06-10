@@ -35,14 +35,6 @@
                 <MenuItem mnemonicParsing="false" text="Exit Game" />
               </items>
             </Menu>
-            <Menu mnemonicParsing="false" text=" ">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-              </items>
-               <graphic>
-                  <Button contentDisplay="RIGHT" mnemonicParsing="false" text="X" />
-               </graphic>
-            </Menu>
          </menus>
       </MenuBar>
    </top>
