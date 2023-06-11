@@ -13,6 +13,7 @@ public class newGameController implements Initializable {
     public Stage stage;
     public TextField row = new TextField();
     public TextField col = new TextField();
+    public Button start = new Button();
 
 
     @Override
