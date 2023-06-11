@@ -1,14 +1,40 @@
 package View;
 
+import ViewModel.MyViewModel;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 public class MyViewController implements IView{
-    @FXML
-    private Label welcomeText;
+    MazeDisplayer mazeDisplayer;
+    @Override
+    public void setScene(Scene scene) {
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    }
+
+    @Override
+    public void setVM(MyViewModel myViewModel) {
+
+    }
+
+    @Override
+    public void setStage(Stage primaryStage) {
+
+    }
+
+    @Override
+    public void changeScreenSize(Scene scene) {
+
+    }
+
+    @Override
+    public void setPlayerIcon(String s) throws Exception {
+        mazeDisplayer.setIcon(s);
+    }
+
+    @Override
+    public void exit() {
+
     }
 }

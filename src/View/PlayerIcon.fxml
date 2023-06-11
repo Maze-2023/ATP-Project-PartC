@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-image: url(Images/scareFloor.png); -fx-background-size: 100% 100%;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PlayerIconController">
+   <children>
+      <Button fx:id="Mike" layoutX="131.0" layoutY="387.0" mnemonicParsing="false" onAction="#handleMike" prefHeight="150.0" prefWidth="114.0" style="-fx-background-image: url(Images/Mike.png); -fx-background-color: transpararent; -fx-background-size: 100% 100%;">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></Button>
+      <Button fx:id="Sully" layoutX="278.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleSully" prefHeight="268.0" prefWidth="187.0" style="-fx-background-image: url(Images/Sully.png); -fx-background-color: transparent; -fx-background-size: 100% 100%;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="Boo" layoutX="467.0" layoutY="403.0" mnemonicParsing="false" onAction="#handleBoo" prefHeight="128.0" prefWidth="82.0" style="-fx-background-image: url(Images/Boo.png); -fx-background-color: transparent; -fx-background-size: 100% 100%;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="Roz" layoutX="690.0" layoutY="321.0" mnemonicParsing="false" onAction="#handleRoz" prefHeight="221.0" prefWidth="160.0" style="-fx-background-image: url(Images/Roz.png); -fx-background-size: 100% 100%; -fx-background-color: transparent;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="Celia" layoutX="568.0" layoutY="323.0" mnemonicParsing="false" onAction="#handleCelia" prefHeight="214.0" prefWidth="136.0" style="-fx-background-image: url(Images/Ceila.png); -fx-background-size: 100% 100%; -fx-background-color: transparent;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+   </children>
+</AnchorPane>
