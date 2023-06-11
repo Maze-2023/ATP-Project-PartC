@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.Cursor?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url(Images/scareFloor.png); -fx-background-size: 100% 100%;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PlayerIconController">
    <children>
-      <Button fx:id="Mike" layoutX="88.0" layoutY="206.0" mnemonicParsing="false" onAction="#handleMike" prefHeight="111.0" prefWidth="77.0" style="-fx-background-image: url(Images/Mike.png); -fx-background-size: 100% 100%;" stylesheets="PlayerIcon.css">
+      <Button fx:id="Mike" layoutX="88.0" layoutY="206.0" mnemonicParsing="false" onAction="#handleMike" prefHeight="111.0" prefWidth="77.0" style="-fx-background-image: url(Images/Mike.png); -fx-background-color: #F0FFF0; -fx-border-color: lightgrey; -fx-background-size: 100% 100%;" stylesheets="PlayerIcon.css">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor></Button>
-      <Button fx:id="Sully" layoutX="262.0" layoutY="206.0" mnemonicParsing="false" onAction="#handleSully" prefHeight="111.0" prefWidth="77.0" style="-fx-background-image: url(Images/Sully.png); -fx-background-size: 100% 100%;" stylesheets="PlayerIcon.css">
+      <Button fx:id="Sully" layoutX="262.0" layoutY="206.0" mnemonicParsing="false" onAction="#handleSully" prefHeight="111.0" prefWidth="77.0" style="-fx-background-image: url(Images/Sully.png); -fx-background-color: #E0FFFF; -fx-border-color: lightgrey; -fx-background-size: 100% 100%;" stylesheets="PlayerIcon.css">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="Boo" layoutX="440.0" layoutY="206.0" mnemonicParsing="false" onAction="#handleBoo" prefHeight="111.0" prefWidth="77.0" style="-fx-background-image: url(Images/Boo.png); -fx-background-size: 100% 100%;" stylesheets="PlayerIcon.css">
+      <Button fx:id="Boo" layoutX="440.0" layoutY="206.0" mnemonicParsing="false" onAction="#handleBoo" prefHeight="111.0" prefWidth="77.0" style="-fx-background-image: url(Images/Boo.png); -fx-background-color: #E6E6FA; -fx-border-color: lightgrey; -fx-background-size: 100% 100%;" stylesheets="PlayerIcon.css">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="Roz" layoutX="172.0" layoutY="71.0" mnemonicParsing="false" onAction="#handleRoz" prefHeight="111.0" prefWidth="77.0" style="-fx-background-image: url(Images/Roz.png); -fx-background-size: 100% 100%;" stylesheets="PlayerIcon.css">
+      <Button fx:id="Roz" layoutX="172.0" layoutY="71.0" mnemonicParsing="false" onAction="#handleRoz" prefHeight="111.0" prefWidth="77.0" style="-fx-background-image: url(Images/Roz.png); -fx-background-size: 100% 100%; -fx-border-color: lightgrey; -fx-background-color: #FFFFF0;" stylesheets="PlayerIcon.css">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="Celia" layoutX="346.0" layoutY="71.0" mnemonicParsing="false" onAction="#handleCelia" prefHeight="111.0" prefWidth="77.0" style="-fx-background-image: url(Images/Ceila.png); -fx-background-size: 100% 100%;" stylesheets="PlayerIcon.css">
+      <Button fx:id="Celia" layoutX="346.0" layoutY="71.0" mnemonicParsing="false" onAction="#handleCelia" prefHeight="111.0" prefWidth="77.0" style="-fx-background-image: url(Images/Ceila.png); -fx-background-size: 100% 100%; -fx-border-color: lightgrey; -fx-background-color: #FFF0F5;" stylesheets="PlayerIcon.css">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
