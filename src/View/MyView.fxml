@@ -4,38 +4,41 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <MenuBar prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <menus>
-            <Menu mnemonicParsing="false" text="File">
-              <items>
-                <MenuItem mnemonicParsing="false" text="New" />
-                  <MenuItem mnemonicParsing="false" text="Save" />
-                  <MenuItem mnemonicParsing="false" text="Load" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Options">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Properties" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Help">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Inforamtion" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="About">
-              <items>
-                  <MenuItem mnemonicParsing="false" text="Programers" />
-                <MenuItem mnemonicParsing="false" text="Algorithms" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Exit">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Exit Game" />
-              </items>
-            </Menu>
-         </menus>
-      </MenuBar>
-   </top>
+    <top>
+        <VBox>
+            <MenuBar prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                <menus>
+                    <Menu mnemonicParsing="false" text="File">
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="New" />
+                            <MenuItem mnemonicParsing="false" text="Save" />
+                            <MenuItem mnemonicParsing="false" text="Load" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Options">
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="Properties" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Help">
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="Information" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="About">
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="Programmers" />
+                            <MenuItem mnemonicParsing="false" text="Algorithms" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Exit">
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="Exit Game" />
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+            <Label alignment="TOP_LEFT" contentDisplay="TEXT_ONLY" prefHeight="34.0" prefWidth="99.0" text="Player Location:" />
+        </VBox>
+    </top>
 </BorderPane>
