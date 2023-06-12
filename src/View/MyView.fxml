@@ -10,7 +10,7 @@
                 <menus>
                     <Menu mnemonicParsing="false" text="File">
                         <items>
-                            <MenuItem mnemonicParsing="false" text="New" />
+                            <MenuItem mnemonicParsing="false" text="New" onAction="#newGame"/>
                             <MenuItem mnemonicParsing="false" text="Save" />
                             <MenuItem mnemonicParsing="false" text="Load" />
                         </items>

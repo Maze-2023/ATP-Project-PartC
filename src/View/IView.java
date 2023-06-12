@@ -12,4 +12,6 @@ public interface IView {
     void setPlayerIcon(String s) throws Exception;
     void exit();
 
+    void setResizeEvent(Scene scene);
+
 }

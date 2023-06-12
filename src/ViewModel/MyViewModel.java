@@ -46,6 +46,20 @@ public class MyViewModel extends Observable implements Observer {
         M.generate(rows,columns);
     }
 
+    public void createEmptyMaze(int row, int col) {
+        IsEmpty = true;
+        EmptyRow=row;
+        EmptyCol=col;
+        emptyMaze=new int[row][col];
+        for (int e=0;e<EmptyRow;e++){
+            for (int k=0;k<EmptyCol;k++){
+                emptyMaze[e][k]=0;
+            }
+        }
+        setChanged();
+        notifyObservers("empty");
+    }
+
     private void updatePose(){
         playerR = M.getPlayerR();
         playerC = M.getPlayerC();

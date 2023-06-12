@@ -21,7 +21,7 @@ public class MazeDisplayer extends Canvas {
     private int playerC=0;
 
     public static MediaPlayer mediaPlayer;
-    private boolean winGame=false;
+    public boolean winGame=false;
     Image playerIcon;
     StringProperty MikeImg = new SimpleStringProperty();
     StringProperty SullyImg = new SimpleStringProperty();
@@ -139,7 +139,6 @@ public class MazeDisplayer extends Canvas {
             }
         }
     }
-
 
 
     private void showWinnerStage(String youAreTheWinner) {

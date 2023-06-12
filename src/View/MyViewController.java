@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -19,6 +20,9 @@ public class MyViewController implements IView, Observer {
     MazeDisplayer mazeDisplayer;
     MyViewModel myViewModel;
     newGameController newGameController;
+
+    @FXML
+    public Pane pane;
     @Override
     public void setScene(Scene scene) {
 
@@ -58,6 +62,24 @@ public class MyViewController implements IView, Observer {
 
     }
 
+    public void newGame(javafx.event.ActionEvent actionEvent)
+    {
+        try {
+            Stage stage = new Stage();
+            stage.setTitle("New Game");
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("newGame.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Scene scene = new Scene(root, 500, 400);
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void About(javafx.event.ActionEvent actionEvent) {
         try {
             Stage stage = new Stage();
@@ -73,12 +95,23 @@ public class MyViewController implements IView, Observer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void Exit(javafx.event.ActionEvent event) throws IOException {
         exit();
         System.exit(0);
 
+    }
+
+
+    public void setResizeEvent(Scene scene) {
+        mazeDisplayer.widthProperty().bind(pane.widthProperty());
+        mazeDisplayer.heightProperty().bind(pane.heightProperty());
+        scene.widthProperty().addListener((observable, oldValue, newValue) -> {
+            mazeDisplayer.widthProperty().bind(pane.widthProperty());
+        });
+        scene.heightProperty().addListener((observable, oldValue, newValue) -> {
+            mazeDisplayer.heightProperty().bind(pane.heightProperty());
+        });
     }
 }
