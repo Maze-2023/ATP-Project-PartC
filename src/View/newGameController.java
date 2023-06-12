@@ -1,6 +1,7 @@
 package View;
 
 import ViewModel.MyViewModel;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
@@ -34,6 +35,7 @@ public class newGameController implements Initializable {
     public static void setMyViewModel(MyViewModel myViewModel) {
         newGameController.myViewModel = myViewModel;
     }
+    @FXML
     public void create() {
         mazeDisplayer.winGame = false;
         if (IsEmpty) {
