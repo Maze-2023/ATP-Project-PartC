@@ -32,7 +32,7 @@
                     </Menu>
                     <Menu mnemonicParsing="false" text="Exit">
                         <items>
-                            <MenuItem mnemonicParsing="false" text="Exit Game" />
+                            <MenuItem mnemonicParsing="false" onAction="#Exit" text="Exit Game" />
                         </items>
                     </Menu>
                 </menus>

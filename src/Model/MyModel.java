@@ -77,6 +77,8 @@ public class MyModel extends Observable implements IModel{
     public void setPlayerC(int col){playerC = col;}
 
     public int[][] getFrame(){return maze.getFrame();}
+
+    @Override
     public void addToMe(Observer o){
         this.addObserver(o);
     }

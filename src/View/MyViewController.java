@@ -3,6 +3,7 @@ package View;
 import ViewModel.MyViewModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -16,15 +17,16 @@ import java.util.Observer;
 
 public class MyViewController implements IView, Observer {
     MazeDisplayer mazeDisplayer;
+    MyViewModel myViewModel;
     newGameController newGameController;
     @Override
     public void setScene(Scene scene) {
 
     }
 
-    @Override
+    @FXML
     public void setVM(MyViewModel myViewModel) {
-
+        this.myViewModel = myViewModel;
     }
 
     @Override
@@ -44,7 +46,7 @@ public class MyViewController implements IView, Observer {
 
     @Override
     public void exit() {
-
+        myViewModel.exit();
     }
 
     public void setNewGame(newGameController newGame)
@@ -71,6 +73,12 @@ public class MyViewController implements IView, Observer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+    public void Exit(javafx.event.ActionEvent event) throws IOException {
+        exit();
+        System.exit(0);
 
     }
 }

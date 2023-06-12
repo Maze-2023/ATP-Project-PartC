@@ -2,5 +2,9 @@
 
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url(Images/about.png); -fx-background-size: 100% 100%;" fx:controller="View.About" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0"
+            prefWidth="600.0"
+            style="-fx-background-image: url(Images/about.png);
+             -fx-background-size: 100% 100%;" fx:controller="View.About"
+            xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
 </AnchorPane>
