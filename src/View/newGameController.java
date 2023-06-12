@@ -100,4 +100,9 @@ public class newGameController implements Initializable {
         alert.setContentText(alertMessage);
         alert.show();
     }
+
+    public void setEmptyMaze(boolean b) {
+        MyViewModel.IsEmpty=b;
+        myViewModel.emptyMaze=null;
+    }
 }

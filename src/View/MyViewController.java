@@ -97,13 +97,36 @@ public class MyViewController implements IView, Observer {
         }
     }
 
+    @FXML
+    public void Properties(javafx.event.ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            stage.setTitle("Properties");
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Properties.fxml"));
+            Parent root = fxmlLoader.load();
+
+            //set new properties
+            PropertiesController propController = fxmlLoader.getController();
+            propController.setStage(stage);
+            propController.setNewGame(newGameController);
+
+            Scene scene = new Scene(root, 748, 400);
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void Exit(javafx.event.ActionEvent event) throws IOException {
         exit();
         System.exit(0);
 
     }
 
-
+    //TODO: check if works
     public void setResizeEvent(Scene scene) {
         mazeDisplayer.widthProperty().bind(pane.widthProperty());
         mazeDisplayer.heightProperty().bind(pane.heightProperty());
