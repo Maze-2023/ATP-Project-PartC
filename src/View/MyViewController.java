@@ -2,11 +2,19 @@ package View;
 
 import ViewModel.MyViewModel;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class MyViewController implements IView{
+import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
+
+public class MyViewController implements IView, Observer {
     MazeDisplayer mazeDisplayer;
     newGameController newGameController;
     @Override
@@ -42,5 +50,27 @@ public class MyViewController implements IView{
     public void setNewGame(newGameController newGame)
     {
         newGameController=newGame;
+    }
+    @Override
+    public void update(Observable o, Object arg) {
+
+    }
+
+    public void About(javafx.event.ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            stage.setTitle("About");
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("About.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Scene scene = new Scene(root, 748, 400);
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

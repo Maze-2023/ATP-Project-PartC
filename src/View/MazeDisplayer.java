@@ -4,6 +4,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
 import java.awt.*;
@@ -18,6 +20,7 @@ public class MazeDisplayer extends Canvas {
     private int playerR=0;
     private int playerC=0;
 
+    public static MediaPlayer mediaPlayer;
     private boolean winGame=false;
     Image playerIcon;
     StringProperty MikeImg = new SimpleStringProperty();
@@ -27,6 +30,8 @@ public class MazeDisplayer extends Canvas {
     StringProperty CeliaImg = new SimpleStringProperty();
     StringProperty wallImg = new SimpleStringProperty();
     StringProperty goalImg = new SimpleStringProperty();
+
+
 
     public void setIcon(String s) throws FileNotFoundException {
         switch (s){
@@ -134,6 +139,8 @@ public class MazeDisplayer extends Canvas {
             }
         }
     }
+
+
 
     private void showWinnerStage(String youAreTheWinner) {
         //TODO: add winner stage to the program
