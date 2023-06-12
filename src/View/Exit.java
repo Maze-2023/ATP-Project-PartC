@@ -1,5 +1,4 @@
 package View;
-
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
