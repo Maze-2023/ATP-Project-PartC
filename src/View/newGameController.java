@@ -1,5 +1,6 @@
 package View;
 
+import ViewModel.MyViewModel;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 
@@ -14,9 +15,12 @@ public class newGameController implements Initializable {
     public TextField row = new TextField();
     public TextField col = new TextField();
     public Button start = new Button();
-
+    public static MyViewModel myViewModel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {}
 
+    public void create() {
+        //TODO: generate te maze and music and all
+    }
 }

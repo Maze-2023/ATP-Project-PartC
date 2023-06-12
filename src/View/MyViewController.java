@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 public class MyViewController implements IView{
     MazeDisplayer mazeDisplayer;
+    newGameController newGameController;
     @Override
     public void setScene(Scene scene) {
 
@@ -36,5 +37,10 @@ public class MyViewController implements IView{
     @Override
     public void exit() {
 
+    }
+
+    public void setNewGame(newGameController newGame)
+    {
+        newGameController=newGame;
     }
 }

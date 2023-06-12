@@ -53,6 +53,11 @@ public class PlayerIconController {
     public void iconChosen()
     {
         stage.setScene(scene);
-        //TODO: continue with settings
+        //update bindings
+        newGameController.myViewModel=myViewModel;
+        newGameController createGame = new newGameController();
+        myViewController.setNewGame(createGame);
+        //begin
+        createGame.create();
     }
 }
