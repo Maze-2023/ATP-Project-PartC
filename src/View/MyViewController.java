@@ -1,31 +1,37 @@
 package View;
 
 import ViewModel.MyViewModel;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.control.Label;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
 public class MyViewController implements IView, Observer {
-    MazeDisplayer mazeDisplayer;
+
+    MazeDisplayer mazeDisplayer=new MazeDisplayer();
     MyViewModel myViewModel;
     newGameController newGameController;
+
+    Scene scene;
+    Stage stage;
+
+    @FXML
+    Label position;
 
     @FXML
     public Pane pane;
     @Override
     public void setScene(Scene scene) {
-
+        this.scene=scene;
     }
 
     @FXML
@@ -35,14 +41,20 @@ public class MyViewController implements IView, Observer {
 
     @Override
     public void setStage(Stage primaryStage) {
-
+    this.stage=primaryStage;
     }
 
     @Override
     public void changeScreenSize(Scene scene) {
-
+        mazeDisplayer.widthProperty().bind(pane.widthProperty());
+        mazeDisplayer.heightProperty().bind(pane.heightProperty());
+        scene.widthProperty().addListener((observable, oldValue, newValue) -> {
+            mazeDisplayer.widthProperty().bind(pane.widthProperty());
+        });
+        scene.heightProperty().addListener((observable, oldValue, newValue) -> {
+            mazeDisplayer.heightProperty().bind(pane.heightProperty());
+        });
     }
-
     @Override
     public void setPlayerIcon(String s) throws Exception {
         mazeDisplayer.setIcon(s);
@@ -59,7 +71,47 @@ public class MyViewController implements IView, Observer {
     }
     @Override
     public void update(Observable o, Object arg) {
+        String message=(String)arg;
+        if (o == myViewModel) {
+            if (message.equals("generated"))
+            {
+                MazeDisplayer.setMyViewModel(myViewModel);
+                MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
+                MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
+                mazeDisplayer.drawMaze(myViewModel.getFrame());
+                position.textProperty().bind(Bindings.concat(myViewModel.stringPlayerR+","+myViewModel.stringPlayerC));
 
+            }
+            if(arg.equals("playerMove"))
+            {
+                MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
+                MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
+                mazeDisplayer.draw();
+                position.textProperty().bind(Bindings.concat(myViewModel.stringPlayerR+","+myViewModel.stringPlayerC));
+
+            }
+            if ((arg.equals("solved")))
+            {
+//                MazeDisplayer.setSolutionObj(MYVM.getSolution());
+//                MazeDisplayer.drawSolution();
+//                position.textProperty().bind(Bindings.concat(myViewModel.stringPlayerR+","+myViewModel.stringPlayerC));
+
+            }
+            if ((arg.equals("loaded")))
+            {
+                MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
+                MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
+                mazeDisplayer.drawMaze(myViewModel.getFrame());
+            }
+            if (message.equals("empty"))
+            {
+                MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
+                MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
+                mazeDisplayer.drawMaze(myViewModel.getFrame());
+                position.textProperty().bind(Bindings.concat(myViewModel.stringPlayerR+","+myViewModel.stringPlayerC));
+
+            }
+        }
     }
 
     public void newGame(javafx.event.ActionEvent actionEvent)
@@ -128,15 +180,4 @@ public class MyViewController implements IView, Observer {
 
     }
 
-    //TODO: check if works
-    public void setResizeEvent(Scene scene) {
-        mazeDisplayer.widthProperty().bind(pane.widthProperty());
-        mazeDisplayer.heightProperty().bind(pane.heightProperty());
-        scene.widthProperty().addListener((observable, oldValue, newValue) -> {
-            mazeDisplayer.widthProperty().bind(pane.widthProperty());
-        });
-        scene.heightProperty().addListener((observable, oldValue, newValue) -> {
-            mazeDisplayer.heightProperty().bind(pane.heightProperty());
-        });
-    }
 }

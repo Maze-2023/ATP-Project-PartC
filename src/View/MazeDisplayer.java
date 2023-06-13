@@ -1,15 +1,12 @@
 package View;
 
+import ViewModel.MyViewModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
 
-import java.awt.*;
-import java.io.File;
 import javafx.scene.image.Image;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,21 +14,21 @@ import java.util.Arrays;
 
 public class MazeDisplayer extends Canvas {
     private int[][] maze;
-    private int playerR=0;
-    private int playerC=0;
+    private static int playerR=0;
+    private static int playerC=0;
+
+    static MyViewModel myViewModel;
 
     public static MediaPlayer mediaPlayer;
     public boolean winGame=false;
     Image playerIcon;
-    StringProperty MikeImg = new SimpleStringProperty();
-    StringProperty SullyImg = new SimpleStringProperty();
-    StringProperty BooImg = new SimpleStringProperty();
-    StringProperty RozImg = new SimpleStringProperty();
-    StringProperty CeliaImg = new SimpleStringProperty();
-    StringProperty wallImg = new SimpleStringProperty();
-    StringProperty goalImg = new SimpleStringProperty();
-
-
+    StringProperty MikeImg = new SimpleStringProperty("src/main/resources/Images/Mike.png");
+    StringProperty SullyImg = new SimpleStringProperty("src/main/resources/Images/Sully.png");
+    StringProperty BooImg = new SimpleStringProperty("src/main/resources/Images/boo.png");
+    StringProperty RozImg = new SimpleStringProperty("src/main/resources/Images/roz.png");
+    StringProperty CeliaImg = new SimpleStringProperty("src/main/resources/Images/Celia.png");
+    StringProperty wallImg = new SimpleStringProperty("src/main/resources/Images/wall.png");
+    StringProperty goalImg = new SimpleStringProperty("src/main/resources/Images/Goal.png");
 
     public void setIcon(String s) throws FileNotFoundException {
         switch (s){
@@ -64,16 +61,20 @@ public class MazeDisplayer extends Canvas {
         return playerR;
     }
 
-    public void setPlayerR(int playerR) {
-        this.playerR = playerR;
+    public static void setPlayerR(int playerR) {
+        MazeDisplayer.playerR = playerR;
     }
 
     public int getPlayerC() {
         return playerC;
     }
 
-    public void setPlayerC(int playerC) {
-        this.playerC = playerC;
+    public static void setPlayerC(int playerC) {
+        MazeDisplayer.playerC = playerC;
+    }
+
+    public static void setMyViewModel(MyViewModel myViewModel) {
+        MazeDisplayer.myViewModel = myViewModel;
     }
 
     @Override
@@ -81,7 +82,7 @@ public class MazeDisplayer extends Canvas {
         return true;
     }
 
-    private void draw() {
+    void draw() {
         if(maze != null){
             double canvasHeight = getHeight();
             double canvasWidth = getWidth();
