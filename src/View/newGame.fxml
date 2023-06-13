@@ -9,7 +9,7 @@
    <children>
       <TextField fx:id="row" layoutX="76.0" layoutY="91.0" prefHeight="7.0" prefWidth="130.0" />
       <TextField fx:id="col" layoutX="76.0" layoutY="127.0" prefHeight="7.0" prefWidth="130.0" />
-      <Button fx:id="start" layoutX="170.0" layoutY="308.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="211.0" style="-fx-background-color: lightblue; -fx-border-color: lightgray;" text="Start Game" onAction="#create">
+      <Button fx:id="start" layoutX="170.0" layoutY="308.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="211.0" text="Start Game" onAction="#create" styleClass="button">
          <font>
             <Font name="SimSun" size="26.0" />
          </font>

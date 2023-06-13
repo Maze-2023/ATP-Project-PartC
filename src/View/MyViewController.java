@@ -72,6 +72,7 @@ public class MyViewController implements IView, Observer {
             Parent root = fxmlLoader.load();
 
             Scene scene = new Scene(root, 500, 400);
+            scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
@@ -112,6 +113,7 @@ public class MyViewController implements IView, Observer {
             propController.setNewGame(newGameController);
 
             Scene scene = new Scene(root, 748, 400);
+            scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();

@@ -1,0 +1,8 @@
+.choice-box .label {
+    -fx-font-size: 20px; /* Adjust the font size as desired */
+}
+
+.button:hover {
+    -fx-background-color: #E0FFFF;
+    -fx-border-color: #B0C4DE;
+}
