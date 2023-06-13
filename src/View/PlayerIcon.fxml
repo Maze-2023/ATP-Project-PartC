@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-image: url(Images/scareFloor.png); -fx-background-size: 100% 100%;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PlayerIconController">
    <children>
-      <Button fx:id="Mike" layoutX="131.0" layoutY="387.0" mnemonicParsing="false" onAction="#handleMike" prefHeight="150.0" prefWidth="114.0" style="-fx-background-image: url(Images/Mike.png); -fx-background-color: transpararent; -fx-background-size: 100% 100%;">
+      <Button fx:id="Mike" layoutX="131.0" layoutY="387.0" mnemonicParsing="false" onAction="#handleMike" prefHeight="150.0" prefWidth="114.0" style="-fx-background-image: url(Images/Mike.png); -fx-background-color: transparent; -fx-background-size: 100% 100%;">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor></Button>

@@ -2,10 +2,10 @@ package View;
 
 import ViewModel.MyViewModel;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class PlayerIconController {
-
     Stage stage;
     Scene scene;
     MyViewController myViewController;

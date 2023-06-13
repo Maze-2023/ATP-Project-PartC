@@ -6,48 +6,52 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
 
+<?import View.MazeDisplayer?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
     <top>
-        <VBox>
-            <MenuBar prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-                <menus>
-                    <Menu mnemonicParsing="false" text="File">
-                        <items>
-                            <MenuItem mnemonicParsing="false" onAction="#newGame" text="New" />
-                            <MenuItem mnemonicParsing="false" text="Save" />
-                            <MenuItem mnemonicParsing="false" text="Load" />
-                        </items>
-                    </Menu>
-                    <Menu mnemonicParsing="false" text="Options">
-                        <items>
-                            <MenuItem mnemonicParsing="false" onAction="#Properties" text="Properties" />
-                        </items>
-                    </Menu>
-                    <Menu mnemonicParsing="false" text="Help">
-                        <items>
-                            <MenuItem mnemonicParsing="false" text="Instructions" />
-                        </items>
-                    </Menu>
-                    <Menu mnemonicParsing="false" text="About">
-                        <items>
-                            <MenuItem mnemonicParsing="false" onAction="#About" text="info" />
-                        </items>
-                    </Menu>
-                    <Menu mnemonicParsing="false" text="Exit">
-                        <items>
-                            <MenuItem mnemonicParsing="false" onAction="#Exit" text="Exit Game" />
-                        </items>
-                    </Menu>
-                </menus>
-            </MenuBar>
-         <AnchorPane prefHeight="200.0" prefWidth="200.0">
-            <children>
-               <Label alignment="TOP_LEFT" contentDisplay="TEXT_ONLY" prefHeight="30.0" prefWidth="99.0" text="Player Location:" />
-               <Label fx:id="position" alignment="TOP_LEFT" contentDisplay="TEXT_ONLY" layoutX="92.0" prefHeight="30.0" prefWidth="99.0" />
-            </children>
-         </AnchorPane>
-        </VBox>
+        <MenuBar prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#newGame" text="New" />
+                        <MenuItem mnemonicParsing="false" text="Save" />
+                        <MenuItem mnemonicParsing="false" text="Load" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Options">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#Properties" text="Properties" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Instructions" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="About">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#About" text="info" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Exit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#Exit" text="Exit Game" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
     </top>
+    <center>
+        <AnchorPane prefHeight="400.0" prefWidth="600.0"
+                    style="-fx-background-image: url(Images/gameBack.png); -fx-background-size: 100% 100%;">
+            <Label alignment="TOP_LEFT" contentDisplay="TEXT_ONLY" prefHeight="30.0" prefWidth="99.0"
+                   text="Player Location:"/>
+            <Label fx:id="position" alignment="TOP_LEFT" contentDisplay="TEXT_ONLY" layoutX="92.0" prefHeight="30.0"
+                   prefWidth="99.0"/>
+            <children>
+                <MazeDisplayer fx:id="MazeDisplayer" height="400.0" width="600.0" BorderPane.alignment="CENTER"/>
+            </children>
+        </AnchorPane>
+    </center>
 </BorderPane>

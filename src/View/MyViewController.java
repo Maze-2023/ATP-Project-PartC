@@ -12,12 +12,14 @@ import javafx.stage.Stage;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Observable;
 import java.util.Observer;
 
 public class MyViewController implements IView, Observer {
+    @FXML
+    public View.MazeDisplayer MazeDisplayer;
 
-    MazeDisplayer mazeDisplayer=new MazeDisplayer();
     MyViewModel myViewModel;
     newGameController newGameController;
 
@@ -46,18 +48,18 @@ public class MyViewController implements IView, Observer {
 
     @Override
     public void changeScreenSize(Scene scene) {
-        mazeDisplayer.widthProperty().bind(pane.widthProperty());
-        mazeDisplayer.heightProperty().bind(pane.heightProperty());
+        MazeDisplayer.widthProperty().bind(pane.widthProperty());
+        MazeDisplayer.heightProperty().bind(pane.heightProperty());
         scene.widthProperty().addListener((observable, oldValue, newValue) -> {
-            mazeDisplayer.widthProperty().bind(pane.widthProperty());
+            MazeDisplayer.widthProperty().bind(pane.widthProperty());
         });
         scene.heightProperty().addListener((observable, oldValue, newValue) -> {
-            mazeDisplayer.heightProperty().bind(pane.heightProperty());
+            MazeDisplayer.heightProperty().bind(pane.heightProperty());
         });
     }
     @Override
     public void setPlayerIcon(String s) throws Exception {
-        mazeDisplayer.setIcon(s);
+        MazeDisplayer.setIcon(s);
     }
 
     @Override
@@ -78,7 +80,7 @@ public class MyViewController implements IView, Observer {
                 MazeDisplayer.setMyViewModel(myViewModel);
                 MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
                 MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
-                mazeDisplayer.drawMaze(myViewModel.getFrame());
+                MazeDisplayer.drawMaze(myViewModel.getFrame());
                 position.textProperty().bind(Bindings.concat(myViewModel.stringPlayerR+","+myViewModel.stringPlayerC));
 
             }
@@ -86,7 +88,7 @@ public class MyViewController implements IView, Observer {
             {
                 MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
                 MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
-                mazeDisplayer.draw();
+                MazeDisplayer.draw();
                 position.textProperty().bind(Bindings.concat(myViewModel.stringPlayerR+","+myViewModel.stringPlayerC));
 
             }
@@ -101,13 +103,13 @@ public class MyViewController implements IView, Observer {
             {
                 MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
                 MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
-                mazeDisplayer.drawMaze(myViewModel.getFrame());
+                MazeDisplayer.drawMaze(myViewModel.getFrame());
             }
             if (message.equals("empty"))
             {
                 MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
                 MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
-                mazeDisplayer.drawMaze(myViewModel.getFrame());
+                MazeDisplayer.drawMaze(myViewModel.getFrame());
                 position.textProperty().bind(Bindings.concat(myViewModel.stringPlayerR+","+myViewModel.stringPlayerC));
 
             }
@@ -124,7 +126,7 @@ public class MyViewController implements IView, Observer {
             Parent root = fxmlLoader.load();
 
             Scene scene = new Scene(root, 500, 400);
-            scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
@@ -165,7 +167,7 @@ public class MyViewController implements IView, Observer {
             propController.setNewGame(newGameController);
 
             Scene scene = new Scene(root, 748, 400);
-            scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();

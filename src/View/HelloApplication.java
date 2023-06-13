@@ -13,11 +13,14 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class HelloApplication extends Application {
     public Scene playerIconScene;
     public Scene gameScene;
+
+    public Scene welcomeScene;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -25,6 +28,12 @@ public class HelloApplication extends Application {
         MyViewModel myViewModel = new MyViewModel(model);
         model.addToMe(myViewModel);
 
+        stage.setTitle("Welcome");
+        FXMLLoader welcomeFXML = new FXMLLoader(getClass().getResource("Welcome.fxml"));
+        Parent welcome = welcomeFXML.load();
+        welcomeScene = new Scene(welcome,900,600);
+        welcomeScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
+        WelcomeController welcomeController = welcomeFXML.getController();
 
         FXMLLoader playerFXML = new FXMLLoader(getClass().getResource("PlayerIcon.fxml"));
         Parent player = playerFXML.load();
@@ -38,6 +47,10 @@ public class HelloApplication extends Application {
         MyViewController gameController = gameFXML.getController();
         gameScene = new Scene(game,900,600);
 
+        welcomeController.setStage(stage);
+        welcomeController.setScene(playerIconScene);
+
+        playerController.setStage(welcomeController.getStage());
         playerController.setScene(gameScene);
 
         playerController.setMyViewModel(myViewModel);
@@ -46,7 +59,7 @@ public class HelloApplication extends Application {
 
         myViewModel.addToMe(gameController);
 
-        stage.setScene(playerIconScene);
+        stage.setScene(welcomeScene);
         stage.show();
 
     }

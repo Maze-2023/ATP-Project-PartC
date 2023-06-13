@@ -26,7 +26,7 @@ public class MazeDisplayer extends Canvas {
     StringProperty SullyImg = new SimpleStringProperty("src/main/resources/Images/Sully.png");
     StringProperty BooImg = new SimpleStringProperty("src/main/resources/Images/boo.png");
     StringProperty RozImg = new SimpleStringProperty("src/main/resources/Images/roz.png");
-    StringProperty CeliaImg = new SimpleStringProperty("src/main/resources/Images/Celia.png");
+    StringProperty CeliaImg = new SimpleStringProperty("src/main/resources/Images/Ceila.png");
     StringProperty wallImg = new SimpleStringProperty("src/main/resources/Images/wall.png");
     StringProperty goalImg = new SimpleStringProperty("src/main/resources/Images/Goal.png");
 
