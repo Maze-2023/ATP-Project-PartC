@@ -77,17 +77,17 @@ public class MyViewController implements IView, Observer {
         if (o == myViewModel) {
             if (message.equals("generated"))
             {
-                MazeDisplayer.setMyViewModel(myViewModel);
-                MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
-                MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
+                View.MazeDisplayer.setMyViewModel(myViewModel);
+                View.MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
+                View.MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
                 MazeDisplayer.drawMaze(myViewModel.getFrame());
                 position.textProperty().bind(Bindings.concat(myViewModel.stringPlayerR+","+myViewModel.stringPlayerC));
 
             }
             if(arg.equals("playerMove"))
             {
-                MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
-                MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
+                View.MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
+                View.MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
                 MazeDisplayer.draw();
                 position.textProperty().bind(Bindings.concat(myViewModel.stringPlayerR+","+myViewModel.stringPlayerC));
 
@@ -101,14 +101,14 @@ public class MyViewController implements IView, Observer {
             }
             if ((arg.equals("loaded")))
             {
-                MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
-                MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
+                View.MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
+                View.MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
                 MazeDisplayer.drawMaze(myViewModel.getFrame());
             }
             if (message.equals("empty"))
             {
-                MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
-                MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
+                View.MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
+                View.MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
                 MazeDisplayer.drawMaze(myViewModel.getFrame());
                 position.textProperty().bind(Bindings.concat(myViewModel.stringPlayerR+","+myViewModel.stringPlayerC));
 
@@ -116,6 +116,23 @@ public class MyViewController implements IView, Observer {
         }
     }
 
+    public void help(javafx.event.ActionEvent actionEvent)
+    {
+        try {
+            Stage stage = new Stage();
+            stage.setTitle("Help");
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("help.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Scene scene = new Scene(root, 748, 400);
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void newGame(javafx.event.ActionEvent actionEvent)
     {
         try {
@@ -125,7 +142,7 @@ public class MyViewController implements IView, Observer {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("newGame.fxml"));
             Parent root = fxmlLoader.load();
 
-            Scene scene = new Scene(root, 500, 400);
+            Scene scene = new Scene(root, 748, 400);
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
