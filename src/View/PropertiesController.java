@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 public class PropertiesController implements Initializable {
     Stage stage;
     newGameController newGameController;

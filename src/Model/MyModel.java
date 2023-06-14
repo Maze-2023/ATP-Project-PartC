@@ -90,16 +90,13 @@ public class MyModel extends Observable implements IModel{
                 public void clientStrategy(InputStream inFromServer,
                                            OutputStream outToServer) {
                     try {
-                        ObjectOutputStream toServer = new
-                                ObjectOutputStream(outToServer);
-                        ObjectInputStream fromServer = new
-                                ObjectInputStream(inFromServer);
+                        ObjectOutputStream toServer = new ObjectOutputStream(outToServer);
+                        ObjectInputStream fromServer = new ObjectInputStream(inFromServer);
                         toServer.flush();
                         int[] mazeDimensions = new int[]{rows, cols};
                         toServer.writeObject(mazeDimensions); //send maze dimensions to server
                         toServer.flush();
-                        byte[] compressedMaze = (byte[])
-                                fromServer.readObject(); //read generated maze (compressed with MyCompressor) from server
+                        byte[] compressedMaze = (byte[]) fromServer.readObject(); //read generated maze (compressed with MyCompressor) from server
                         InputStream is = new MyDecompressorInputStream(new ByteArrayInputStream(compressedMaze));
                         byte[] decompressedMaze = new byte[rows * cols + 10]; //allocating byte[] for the decompressed maze -
                         is.read(decompressedMaze); //Fill decompressedMaze with bytes
