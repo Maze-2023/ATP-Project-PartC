@@ -13,6 +13,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
@@ -60,6 +61,24 @@ public class HelloApplication extends Application {
         playerController.setMyViewController(gameController);
 
         myViewModel.addToMe(gameController);
+
+        stage.setOnCloseRequest(event -> {
+            event.consume(); // Consume the event to prevent immediate window closing
+
+            // Display a confirmation dialog
+            int confirmed = JOptionPane.showConfirmDialog(
+                    null,
+                    "Are you sure you want to quit?",
+                    "Confirmation",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (confirmed == JOptionPane.YES_OPTION) {
+                // Call your exit function here or close the stage
+                // Exit function example: exitFunction();
+                stage.close();
+                model.exit();
+            }
+        });
 
         stage.setScene(welcomeScene);
         stage.show();

@@ -2,6 +2,7 @@ package View;
 
 import ViewModel.MyViewModel;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public interface IView {

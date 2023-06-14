@@ -22,8 +22,8 @@ import java.util.Observer;
 public class MyModel extends Observable implements IModel{
     Maze maze;
     Solution solution;
-    int playerR = 0;
-    int playerC = 0;
+    int playerR;
+    int playerC;
     int EmptyRow;
     int EmptyCol;
     private Server generatorServer;
@@ -148,31 +148,31 @@ public class MyModel extends Observable implements IModel{
 
         switch (dir) {
             // UP
-            case NUMPAD8 -> newRow = playerR - 1;
+            case DIGIT8 -> newCol = playerC - 1;
 
             // DOWN
-            case NUMPAD2 -> newRow = playerR + 1;
+            case DIGIT2 -> newCol = playerC + 1;
 
-            // RIGHT
-            case NUMPAD6 -> newCol = playerC + 1;
+            // RIGHT - works
+            case DIGIT6 -> newRow = playerR + 1;
 
-            // LEFT
-            case NUMPAD4 -> newCol = playerC - 1;
+            // LEFT - works
+            case DIGIT4 -> newRow = playerR - 1;
 
             /*----------------------diagonal moves---------------------*/
-            case NUMPAD1 -> {
-                newRow = playerR + 1;
-                newCol = playerC - 1;
-            }
-            case NUMPAD3 -> {
-                newRow = playerR + 1;
-                newCol = playerC + 1;
-            }
-            case NUMPAD9 -> {
+            case DIGIT1 -> {
                 newRow = playerR - 1;
                 newCol = playerC + 1;
             }
-            case NUMPAD7 -> {
+            case DIGIT3 -> {
+                newRow = playerR + 1;
+                newCol = playerC + 1;
+            }
+            case DIGIT9 -> {
+                newRow = playerR + 1;
+                newCol = playerC - 1;
+            }
+            case DIGIT7 -> {
                 newRow = playerR - 1;
                 newCol = playerC - 1;
             }
@@ -189,6 +189,7 @@ public class MyModel extends Observable implements IModel{
 
     private boolean isValidMove(int row, int col) {
         // Check if the new position is within the maze bounds
+
         if (row < 0 || row >= maze.getRows() || col < 0 || col >= maze.getColumn()) {
             return false;
         }

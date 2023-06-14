@@ -29,6 +29,7 @@ public class MazeDisplayer extends Canvas {
     StringProperty CeliaImg = new SimpleStringProperty("src/main/resources/Images/Ceila.png");
     StringProperty wallImg = new SimpleStringProperty("src/main/resources/Images/wall.png");
     StringProperty goalImg = new SimpleStringProperty("src/main/resources/Images/Goal.png");
+    StringProperty pathImg = new SimpleStringProperty("src/main/resources/Images/path.png");
 
     public void setIcon(String s) throws FileNotFoundException {
         switch (s){
@@ -98,8 +99,13 @@ public class MazeDisplayer extends Canvas {
 
             //define wall image
             Image wall=null;
+            Image path = null;
+            Image goal=null;
+
             try{
                 wall = new Image(new FileInputStream(wallImg.get()));
+                path = new Image(new FileInputStream(pathImg.get()));
+                goal = new Image(new FileInputStream(goalImg.get()));
             }
             catch (Exception e)
             {
@@ -108,32 +114,27 @@ public class MazeDisplayer extends Canvas {
 
             //draw maze
             for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < cols; j++) {
-                    if(maze[i][j] == 1){
+                for (int j = 0; j < cols; j++)
+                {
+                    double x = j * cellWidth;
+                    double y = i * cellHeight;
+                    if(maze[i][j] == 1)
                         //if it is a wall:
-                        double x = j * cellWidth;
-                        double y = i * cellHeight;
-                        if(wall == null)
-                            graphicsContext.fillRect(x, y, cellWidth, cellHeight);
-                        else
-                            graphicsContext.drawImage(wall,x,y,cellWidth,cellHeight);
+                        graphicsContext.drawImage(wall,x,y,cellWidth,cellHeight);
+                    else
+                        graphicsContext.drawImage(path,x,y,cellWidth,cellHeight);
+                    if(i==rows-1 && j==cols-1)
+                    {
+                        graphicsContext.drawImage(goal,x,y,cellWidth,cellHeight);
                     }
                 }
             }
 
             //set goal image
-            Image goal=null;
-            try{
-                goal = new Image(new FileInputStream(goalImg.get()));
-            }
-            catch (Exception e)
-            {
-                System.out.println(Arrays.toString(e.getStackTrace()));
-            }
-            graphicsContext.drawImage(goal,maze.length*cellWidth,maze[0].length*cellHeight,cellWidth,cellHeight);
+
 
             //add player icon to maze
-            graphicsContext.drawImage(playerIcon,playerR*cellWidth,playerC*canvasHeight,cellWidth,cellHeight);
+            graphicsContext.drawImage(playerIcon,playerR*cellWidth,playerC*cellHeight,cellWidth,cellHeight);
             if (playerR == maze.length && playerC == maze[0].length && winGame==false) {
                 winGame=true;
                 showWinnerStage("You Are The Winner");

@@ -32,22 +32,19 @@ public class newGameController implements Initializable {
         this.stage = stage;
     }
 
-    public static void setMyViewModel(MyViewModel myViewModel) {
-        newGameController.myViewModel = myViewModel;
-    }
     @FXML
     public void create() {
         mazeDisplayer.winGame = false;
         if (IsEmpty) {
             if (row == null && col == null) {
-                myViewModel.createEmptyMaze(15, 15);
+                myViewModel.createEmptyMaze(7, 7);
                 if (stage != null)
                     stage.close();
             } else {
                 try {
                     if (row != null && col != null) {
                         if (Objects.equals(valueOf(row.getText()), "") || Objects.equals(valueOf(col.getText()), "")) {
-                            myViewModel.createEmptyMaze(15, 15);
+                            myViewModel.createEmptyMaze(7, 7);
                             Alert("No scales entered");
                         } else
                             myViewModel.createEmptyMaze(Integer.parseInt(row.getText()), Integer.parseInt(col.getText()));
@@ -62,14 +59,14 @@ public class newGameController implements Initializable {
             if (row == null || col == null)
             {
                 System.out.println("default");
-                myViewModel.createNewGame(15, 15);
+                myViewModel.createNewGame(7, 7);
             }
             else
             {
                 try {
                     if (Objects.equals(valueOf(row.getText()), "") || Objects.equals(valueOf(col.getText()), ""))
                     {
-                        myViewModel.createNewGame(15, 15);
+                        myViewModel.createNewGame(7, 7);
                         Alert("No scales entered");
                     } else
                     {
@@ -80,7 +77,7 @@ public class newGameController implements Initializable {
                             myViewModel.createNewGame(rows, columns);
                             //TODO: add music
                         } else {
-                            myViewModel.createNewGame(15, 15);
+                            myViewModel.createNewGame(7, 7);
                             Alert("You entered small scales...");
                             //TODO: add music
                         }
@@ -92,6 +89,8 @@ public class newGameController implements Initializable {
                 }
             }
         }
+        if (stage != null)
+            stage.close();
     }
 
     private boolean validateMazeScales(int rows, int columns) { return rows > 2 && columns > 2;}

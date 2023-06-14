@@ -6,11 +6,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Observable;
@@ -75,13 +79,15 @@ public class MyViewController implements IView, Observer {
     public void update(Observable o, Object arg) {
         String message=(String)arg;
         if (o == myViewModel) {
+            int row = Integer.parseInt(myViewModel.stringPlayerR.getValue())+1;
+            int col = Integer.parseInt(myViewModel.stringPlayerC.getValue())+1;
             if (message.equals("generated"))
             {
                 View.MazeDisplayer.setMyViewModel(myViewModel);
                 View.MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
                 View.MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
                 MazeDisplayer.drawMaze(myViewModel.getFrame());
-                position.textProperty().bind(Bindings.concat(myViewModel.stringPlayerR+","+myViewModel.stringPlayerC));
+                position.textProperty().bind(Bindings.concat(col+","+row));
 
             }
             if(arg.equals("playerMove"))
@@ -89,7 +95,7 @@ public class MyViewController implements IView, Observer {
                 View.MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
                 View.MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
                 MazeDisplayer.draw();
-                position.textProperty().bind(Bindings.concat(myViewModel.stringPlayerR+","+myViewModel.stringPlayerC));
+                position.textProperty().bind(Bindings.concat(col+","+row));
 
             }
             if ((arg.equals("solved")))
@@ -110,8 +116,7 @@ public class MyViewController implements IView, Observer {
                 View.MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
                 View.MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
                 MazeDisplayer.drawMaze(myViewModel.getFrame());
-                position.textProperty().bind(Bindings.concat(myViewModel.stringPlayerR+","+myViewModel.stringPlayerC));
-
+                position.textProperty().bind(Bindings.concat(col+","+row));
             }
         }
     }
@@ -141,6 +146,9 @@ public class MyViewController implements IView, Observer {
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("newGame.fxml"));
             Parent root = fxmlLoader.load();
+
+            newGameController=fxmlLoader.getController();
+            newGameController.setStage(stage);
 
             Scene scene = new Scene(root, 748, 400);
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
@@ -194,9 +202,27 @@ public class MyViewController implements IView, Observer {
     }
 
     public void Exit(javafx.event.ActionEvent event) throws IOException {
-        exit();
+        int confirmed = JOptionPane.showConfirmDialog(
+                null,
+                "Are you sure you want to quit?",
+                "Confirmation",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirmed == JOptionPane.YES_OPTION) {
+            // Call your exit function here or close the stage
+            // Exit function example: exitFunction();
+            exit();
+        }
         System.exit(0);
 
     }
 
+    public void keyPressed(KeyEvent keyEvent) {
+        myViewModel.movePlayer(keyEvent.getCode());
+        keyEvent.consume();
+    }
+
+    public void onclick(MouseEvent mouseEvent) {
+            MazeDisplayer.requestFocus();
+    }
 }
