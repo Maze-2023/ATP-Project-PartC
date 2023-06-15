@@ -83,14 +83,6 @@ public class HelloApplication extends Application {
         stage.setScene(welcomeScene);
         stage.show();
 
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("Win.fxml"));
-//        AnchorPane root = loader.load();
-//        Scene scene = new Scene(root);
-//
-//        stage.setScene(scene);
-//        stage.setTitle("My Application");
-//        stage.show();
-
     }
 
     public static void main(String[] args) {
