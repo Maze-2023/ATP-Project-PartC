@@ -201,6 +201,23 @@ public class MyViewController implements IView, Observer {
         }
     }
 
+    public static void Win(String message) {
+        try {
+            Stage stage = new Stage();
+            stage.setTitle(message);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(MyViewController.class.getResource("Win.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Scene scene = new Scene(root, 748, 400);
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void Exit(javafx.event.ActionEvent event) throws IOException {
         int confirmed = JOptionPane.showConfirmDialog(
                 null,

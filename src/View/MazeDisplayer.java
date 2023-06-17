@@ -144,6 +144,6 @@ public class MazeDisplayer extends Canvas {
 
 
     private void showWinnerStage(String youAreTheWinner) {
-        //TODO: add winner stage to the program
+       MyViewController.Win(youAreTheWinner);
     }
 }

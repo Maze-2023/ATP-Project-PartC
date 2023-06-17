@@ -195,7 +195,7 @@ public class MyModel extends Observable implements IModel{
         }
 
         // Check if the new position is blocked by a wall
-        return maze.getCellValue(row, col) != 1;
+        return maze.getCellValue(col, row) != 1;
     }
 
 
