@@ -206,8 +206,7 @@ public class MyViewController implements IView, Observer {
             Stage stage = new Stage();
             stage.setTitle(message);
 
-            FXMLLoader fxmlLoader = new FXMLLoader(MyViewController.class.getResource("Win.fxml"));
-            Parent root = fxmlLoader.load();
+            Parent root = FXMLLoader.load(MyViewController.class.getResource("Win.fxml"));
 
             Scene scene = new Scene(root, 748, 400);
             stage.setScene(scene);
