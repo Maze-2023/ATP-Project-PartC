@@ -42,7 +42,7 @@
         </MenuBar>
     </top>
     <center>
-         <Pane prefHeight="400.0" prefWidth="600.0" >
+         <Pane fx:id="pane" prefHeight="400.0" prefWidth="600.0" >
             <children>
                 <VBox>
                     <MazeDisplayer fx:id="MazeDisplayer" height="400.0" onMouseClicked="#onclick" onMouseDragged="#mouseDragged" width="600.0" BorderPane.alignment="CENTER" />
