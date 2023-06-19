@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -264,5 +265,39 @@ public class MyViewController implements IView, Observer {
         if (loadFile != null) {
             myViewModel.loadGame(loadFile);
         }
+    }
+
+    public void mouseDragged(MouseEvent mouseEvent) {
+        if(myViewModel.getFrame() != null)
+        {
+            //save the bigger num- rows or columns??
+            int maximumSize = Math.max(myViewModel.getFrame()[0].length, myViewModel.getFrame().length);
+
+            //calculate x parameter of mouse - left and right
+            double mousePosX=mousePose(maximumSize,MazeDisplayer.getHeight(),myViewModel.getFrame().length,mouseEvent.getX(),MazeDisplayer.getWidth() / maximumSize);
+            //calculate y parameter of mouse - up and down
+            double mousePosY=mousePose(maximumSize,MazeDisplayer.getWidth(),myViewModel.getFrame()[0].length,mouseEvent.getY(),MazeDisplayer.getHeight() / maximumSize);
+
+            //player moves up
+            if ( mousePosX == myViewModel.getPlayerC() && mousePosY < myViewModel.getPlayerR() )
+                myViewModel.movePlayer(KeyCode.DIGIT8);
+                //player move right
+            else if (mousePosY == myViewModel.getPlayerR() && mousePosX > myViewModel.getPlayerC() )
+                myViewModel.movePlayer(KeyCode.DIGIT6);
+            //player move left
+            else if ( mousePosY == myViewModel.getPlayerR() && mousePosX < myViewModel.getPlayerC() )
+                myViewModel.movePlayer(KeyCode.DIGIT4);
+            //player move down
+            else if (mousePosX == myViewModel.getPlayerC() && mousePosY > myViewModel.getPlayerR()  )
+                myViewModel.movePlayer(KeyCode.DIGIT2);
+
+        }
+    }
+
+    private  double mousePose(int maxsize, double canvasSize, int mazeSize,double mouseEvent,double temp){
+        double cellSize=canvasSize/maxsize;
+        double start = (canvasSize / 2 - (cellSize * mazeSize / 2)) / cellSize;
+        double mouse = (int) ((mouseEvent) / (temp) - start);
+        return mouse;
     }
 }
