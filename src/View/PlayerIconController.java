@@ -5,12 +5,10 @@ import Model.MyModel;
 import ViewModel.MyViewModel;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,25 +19,20 @@ public class PlayerIconController implements Initializable {
     MyViewController myViewController;
     MyViewModel myViewModel;
     public static MediaPlayer BackGroundPlayer;
-
     public void setScene(Scene scene) {
         this.scene = scene;
     }
-
     public void setMyViewController(MyViewController myViewController) {
         this.myViewController = myViewController;
         myViewController.setVM(myViewModel);
     }
-
     public void setMyViewModel(MyViewModel myViewModel) {
         this.myViewModel = myViewModel;
     }
-
     public void setStage(Stage primaryStage)
     {
         stage = primaryStage;
     }
-
     public void handleMike() throws Exception {
         myViewController.setPlayerIcon("Mike");
         iconChosen();
@@ -61,8 +54,12 @@ public class PlayerIconController implements Initializable {
         iconChosen();
     }
 
+    /**
+     * set icon according to what user wanted
+     */
     public void iconChosen()
     {
+        //play music
         File open = new File("resources/music/openSong.mp3");
         Media Song = new Media((open.toURI().toString()));
         BackGroundPlayer = new MediaPlayer(Song);
@@ -75,12 +72,14 @@ public class PlayerIconController implements Initializable {
         });
         BackGroundPlayer.play();
         HelloApplication.BackGroundPlayer.stop();
+
         try{
             StartAgain.BackGroundPlayer.stop();
         }
         catch (Exception ignored){}
 
         stage.setScene(scene);
+
         //update bindings
         if(myViewModel==null)
         {
@@ -96,7 +95,5 @@ public class PlayerIconController implements Initializable {
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+    public void initialize(URL url, ResourceBundle resourceBundle) { }
 }

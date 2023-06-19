@@ -8,12 +8,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.media.MediaPlayer;
-
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -43,6 +40,11 @@ public class MazeDisplayer extends Canvas {
     StringProperty pathImg = new SimpleStringProperty("resources/Images/path.png");
     StringProperty solImage = new SimpleStringProperty("resources/Images/solver.png");
 
+    /**
+     * set the icon that the player chose
+     * @param s icon that is chosen
+     * @throws FileNotFoundException
+     */
     public void setIcon(String s) throws FileNotFoundException {
         switch (s){
             case "Mike":
@@ -65,21 +67,18 @@ public class MazeDisplayer extends Canvas {
         }
     }
 
+    /**
+     * add the maze on to the stage
+     * @param maze
+     * @param stage
+     */
     public void drawMaze(int[][] maze, Stage stage) {
         this.maze = maze;
         draw(stage);
     }
 
-    public int getPlayerR() {
-        return playerR;
-    }
-
     public static void setPlayerR(int playerR) {
         MazeDisplayer.playerR = playerR;
-    }
-
-    public int getPlayerC() {
-        return playerC;
     }
 
     public static void setPlayerC(int playerC) {
@@ -95,21 +94,27 @@ public class MazeDisplayer extends Canvas {
         return true;
     }
 
+    /**
+     * make maze graphics with images
+     * @param stage stage to close after win
+     */
     void draw(Stage stage) {
         if(maze != null){
+            //maze info
             double canvasHeight = getHeight();
             double canvasWidth = getWidth();
             int rows = maze.length;
             int cols = maze[0].length;
 
+            //cell info
             double cellHeight = canvasHeight / rows;
             double cellWidth = canvasWidth / cols;
 
-            GraphicsContext graphicsContext = getGraphicsContext2D();
             //clear the canvas:
+            GraphicsContext graphicsContext = getGraphicsContext2D();
             graphicsContext.clearRect(0, 0, canvasWidth, canvasHeight);
 
-            //define wall image
+            //define images
             Image wall=null;
             Image path = null;
             Image goal=null;
@@ -124,7 +129,7 @@ public class MazeDisplayer extends Canvas {
                 System.out.println(Arrays.toString(e.getStackTrace()));
             }
 
-            //draw maze
+            //create the maze graphics
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < cols; j++)
                 {
@@ -136,11 +141,10 @@ public class MazeDisplayer extends Canvas {
                     else
                         graphicsContext.drawImage(path,x,y,cellWidth,cellHeight);
                     if(i==rows-1 && j==cols-1)
-                    {
                         graphicsContext.drawImage(goal,x,y,cellWidth,cellHeight);
-                    }
                 }
             }
+
             //add player icon to maze
             graphicsContext.drawImage(playerIcon,playerR*cellWidth,playerC*cellHeight,cellWidth,cellHeight);
             if (playerR == maze.length - 1 && playerC == maze[0].length - 1 && !winGame) {
@@ -150,6 +154,11 @@ public class MazeDisplayer extends Canvas {
         }
     }
 
+    /**
+     * only if the player wins, go to the next scene on this stage
+     * @param youAreTheWinner message to send to
+     * @param stage to close
+     */
     private void showWinnerStage(String youAreTheWinner, Stage stage) {
         try {
             PlayerIconController.BackGroundPlayer.stop();
@@ -175,25 +184,31 @@ public class MazeDisplayer extends Canvas {
         }
     }
 
+    /**
+     * if the user wants a hint for solution then draw it
+     * @param stage to close if win
+     */
     public void drawSolution(Stage stage) {
         try {
-            /*get Maze Canvas dimensions */
+            //maze info
             double width = getWidth();
             double height = getHeight();
             int rows = maze.length;
             int cols = maze[0].length;
 
-            /*get single cell dimesions */
+            //cell info
             double cellWidth = width / cols;
             double cellHeight = height / rows;
-            /* create Image instance of the Solution-step Image */
+
+            //solution image
             Image solutionPathImage = null;
             try {
                 solutionPathImage = new Image(new FileInputStream(solImage.get()));
             } catch (FileNotFoundException e) {
                 System.out.println("There is no Image WIN....");
             }
-            /* create Image instance of the Wall-Brick Image */
+
+            //add images
             Image wall = null, goal = null, path=null;
             try {
                 wall = new Image(new FileInputStream(wallImg.get()));
@@ -202,11 +217,13 @@ public class MazeDisplayer extends Canvas {
             } catch (FileNotFoundException e) {
                 System.out.println("There is no file....");
             }
+
+            //clear canvas
             GraphicsContext graphicsContext = getGraphicsContext2D();
-            /* reset the Maze canvas */
+
             graphicsContext.clearRect(0, 0, getWidth(), getHeight());
 
-            /*Draw walls and goal point*/
+            //draw maze
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < cols; j++)
                 {
@@ -218,6 +235,7 @@ public class MazeDisplayer extends Canvas {
                     else
                         graphicsContext.drawImage(path,x,y,cellWidth,cellHeight);
 
+                    //check if in solution
                     for (int k=0;k<solution.size();k++){
                         if(solution.get(k)[0]==i &&solution.get(k)[1]==j){
                             if(!((i == 0 && j == 0) || (i == rows - 1 && j == cols -1)))
@@ -227,9 +245,7 @@ public class MazeDisplayer extends Canvas {
 
                     //end point
                     if(i==rows-1 && j==cols-1)
-                    {
                         graphicsContext.drawImage(goal,x,y,cellWidth,cellHeight);
-                    }
                 }
             }
 
@@ -243,7 +259,8 @@ public class MazeDisplayer extends Canvas {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        /*reset the mazeSolution */
+
+        //rest maze solution
         solution = null;
     }
 }
