@@ -3,13 +3,20 @@ package View;
 import ViewModel.MyViewModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.media.MediaPlayer;
 
 import javafx.scene.image.Image;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class MazeDisplayer extends Canvas {
@@ -53,9 +60,9 @@ public class MazeDisplayer extends Canvas {
         }
     }
 
-    public void drawMaze(int[][] maze) {
+    public void drawMaze(int[][] maze, Stage stage) {
         this.maze = maze;
-        draw();
+        draw(stage);
     }
 
     public int getPlayerR() {
@@ -83,7 +90,7 @@ public class MazeDisplayer extends Canvas {
         return true;
     }
 
-    void draw() {
+    void draw(Stage stage) {
         if(maze != null){
             double canvasHeight = getHeight();
             double canvasWidth = getWidth();
@@ -137,13 +144,32 @@ public class MazeDisplayer extends Canvas {
             graphicsContext.drawImage(playerIcon,playerR*cellWidth,playerC*cellHeight,cellWidth,cellHeight);
             if (playerR == maze.length - 1 && playerC == maze[0].length - 1 && !winGame) {
                 winGame=true;
-                showWinnerStage("You Are The Winner");
+                showWinnerStage("You Are The Winner", stage);
             }
         }
     }
 
 
-    private void showWinnerStage(String youAreTheWinner) {
-       MyViewController.Win(youAreTheWinner);
+    private void showWinnerStage(String youAreTheWinner, Stage stage) {
+        try {
+            PlayerIconController.BackGroundPlayer.stop();
+            Stage stage1 = new Stage();
+            stage1.setTitle(youAreTheWinner);
+
+            FXMLLoader gameFXML = new FXMLLoader(MyViewController.class.getResource("Win.fxml"));
+            Parent root = gameFXML.load();
+
+            WinController winC = gameFXML.getController();
+            winC.setMyViewModel(myViewModel);
+            winC.setStage(stage1);
+            Scene scene = new Scene(root, 640, 344);
+            stage1.setScene(scene);
+            winC.setScene(scene);
+            stage1.initModality(Modality.APPLICATION_MODAL);
+            stage1.show();
+            stage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

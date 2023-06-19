@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -86,7 +85,7 @@ public class MyViewController implements IView, Observer {
                 View.MazeDisplayer.setMyViewModel(myViewModel);
                 View.MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
                 View.MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
-                MazeDisplayer.drawMaze(myViewModel.getFrame());
+                MazeDisplayer.drawMaze(myViewModel.getFrame(), stage);
                 position.textProperty().bind(Bindings.concat(col+","+row));
 
             }
@@ -94,7 +93,7 @@ public class MyViewController implements IView, Observer {
             {
                 View.MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
                 View.MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
-                MazeDisplayer.draw();
+                MazeDisplayer.draw(stage);
                 position.textProperty().bind(Bindings.concat(col+","+row));
 
             }
@@ -109,13 +108,13 @@ public class MyViewController implements IView, Observer {
             {
                 View.MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
                 View.MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
-                MazeDisplayer.drawMaze(myViewModel.getFrame());
+                MazeDisplayer.drawMaze(myViewModel.getFrame(), stage);
             }
             if (message.equals("empty"))
             {
                 View.MazeDisplayer.setPlayerC(myViewModel.getPlayerC());
                 View.MazeDisplayer.setPlayerR(myViewModel.getPlayerR());
-                MazeDisplayer.drawMaze(myViewModel.getFrame());
+                MazeDisplayer.drawMaze(myViewModel.getFrame(), stage);
                 position.textProperty().bind(Bindings.concat(col+","+row));
             }
         }
@@ -201,24 +200,7 @@ public class MyViewController implements IView, Observer {
         }
     }
 
-    public static void Win(String message) {
-        try {
-            PlayerIconController.BackGroundPlayer.stop();
-            Stage stage = new Stage();
-            stage.setTitle(message);
-
-            Parent root = FXMLLoader.load(MyViewController.class.getResource("Win.fxml"));
-
-            Scene scene = new Scene(root, 640, 344);
-            stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void Exit(javafx.event.ActionEvent event) throws IOException {
+    public void Exit() throws IOException {
         int confirmed = JOptionPane.showConfirmDialog(
                 null,
                 "Are you sure you want to quit?",
@@ -231,7 +213,6 @@ public class MyViewController implements IView, Observer {
             exit();
         }
         System.exit(0);
-
     }
 
     public void keyPressed(KeyEvent keyEvent) {
