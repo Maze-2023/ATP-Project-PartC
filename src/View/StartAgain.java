@@ -59,7 +59,7 @@ public class StartAgain {
         playerController.setScene(gameScene);
 
         playerController.setMyViewModel(myViewModel);
-        //gameController.changeScreenSize(gameScene);
+        gameController.changeScreenSize(gameScene);
         playerController.setMyViewController(gameController);
 
         myViewModel.addToMe(gameController);
