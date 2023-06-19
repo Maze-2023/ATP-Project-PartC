@@ -1,10 +1,8 @@
 package ViewModel;
 
 import Model.IModel;
-import Model.MyModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,6 +10,10 @@ import java.util.Observable;
 import java.util.Observer;
 import javafx.scene.input.KeyCode;
 
+/**
+ * This class connect between the View to Model
+ * It's also used as Observer
+ */
 
 public class MyViewModel extends Observable implements Observer {
 
@@ -25,6 +27,7 @@ public class MyViewModel extends Observable implements Observer {
     int EmptyRow;
     int EmptyCol;
 
+    // constructor
     public MyViewModel(IModel m){
         M = m;
         IsEmpty = false;
@@ -44,6 +47,11 @@ public class MyViewModel extends Observable implements Observer {
         M.generate(rows,columns);
     }
 
+    /**
+     * Create an empty maze by algorithm choice
+     * @param row of maze
+     * @param col of the maze
+     */
     public void createEmptyMaze(int row, int col) {
         IsEmpty = true;
         EmptyRow=row;
@@ -58,12 +66,20 @@ public class MyViewModel extends Observable implements Observer {
         notifyObservers("empty");
     }
 
+    // update player position
     private void updatePose(){
         playerR = M.getPlayerR();
         playerC = M.getPlayerC();
         stringPlayerR.set(playerR + "");
         stringPlayerC.set(playerC + "");
     }
+
+    /**
+     * Choose an option by the observer notify
+     * @param o     the observable object.
+     * @param arg   an argument passed to the {@code notifyObservers}
+     *                 method.
+     */
     @Override
     public void update(Observable o, Object arg) {
         if(o == M)

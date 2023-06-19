@@ -9,14 +9,11 @@
     <MediaView fx:id="mediaView" fitHeight="400.0" fitWidth="600.0" />
 
     <HBox alignment="CENTER" layoutX="0" layoutY="320" />
-     <Button layoutX="171.0" layoutY="320.0" mnemonicParsing="false" onAction="#start" prefHeight="46.0" prefWidth="110.0" style="-fx-background-color: #98FB98;" styleClass="button" text="New game">
-         <font>
-             <Font name="SimSun" size="17.0" />
-         </font>
-   </Button>
-     <Button layoutX="386.0" layoutY="320.0" mnemonicParsing="false" onAction="#exit" prefHeight="46.0" prefWidth="110.0" style="-fx-background-color: #98FB98;" styleClass="button" text="Quit">
-      <font>
-         <Font name="SimSun" size="17.0" />
-      </font>
-   </Button>
+    <Button layoutX="171.0" layoutY="320.0" mnemonicParsing="false" onAction="#start" prefHeight="46.0" prefWidth="150.0" style="-fx-background-color: #008080; -fx-font-weight: bold; -fx-font-size: 20.0" text="New game">
+
+    </Button>
+    <Button layoutX="386.0" layoutY="320.0" mnemonicParsing="false" onAction="#exit" prefHeight="46.0" prefWidth="110.0" style="-fx-background-color: #008080; -fx-font-weight: bold; -fx-font-size: 20.0"  text="Quit">
+
+    </Button>
 </AnchorPane>
+

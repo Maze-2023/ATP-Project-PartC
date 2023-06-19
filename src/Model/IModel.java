@@ -1,8 +1,5 @@
 package Model;
-
-import algorithms.search.Solution;
 import javafx.scene.input.KeyCode;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,8 +11,6 @@ public interface IModel {
     void setEmptyMaze(int r, int c);
     int getPlayerR();
     int getPlayerC();
-    void setPlayerR(int row);
-    void setPlayerC(int col);
     ArrayList<int[]> solveMaze();
     void movePlayer(KeyCode dir);
     int[][] getFrame();

@@ -4,25 +4,22 @@ import IO.MyDecompressorInputStream;
 import Server.*;
 import Client.*;
 import View.HelloApplication;
-import algorithms.mazeGenerators.AMazeGenerator;
 import algorithms.mazeGenerators.Maze;
-import algorithms.mazeGenerators.MyMazeGenerator;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.AState;
 import algorithms.search.MazeState;
-import algorithms.search.SearchableMaze;
 import algorithms.search.Solution;
 import javafx.scene.input.KeyCode;
 
 import java.io.*;
-import java.lang.module.Configuration;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Properties;
-import java.util.concurrent.locks.Condition;
 
+/**
+ * Holds the main objects of the maze play
+ */
 public class MyModel extends Observable implements IModel{
     Maze maze;
     Solution solution;
@@ -57,6 +54,11 @@ public class MyModel extends Observable implements IModel{
         }
     }
 
+    /**
+     * Generate a maze by rows and columns input
+     * @param r - rows
+     * @param c - columns
+     */
     @Override
     public void generate(int r, int c) {
         CommunicateWithServer_MazeGenerating(r,c);
@@ -64,6 +66,11 @@ public class MyModel extends Observable implements IModel{
         notifyObservers("generated");
     }
 
+    /**
+     * Set an empty maze
+     * @param r - rows
+     * @param c - columns
+     */
     @Override
     public void setEmptyMaze(int r, int c) {
         EmptyRow = r;
@@ -75,13 +82,12 @@ public class MyModel extends Observable implements IModel{
     public int getPlayerR(){return playerR;}
     @Override
     public int getPlayerC(){return playerC;}
-    @Override
-    public void setPlayerR(int row){playerR = row;}
-    @Override
-    public void setPlayerC(int col){playerC = col;}
-
     public int[][] getFrame(){return maze.getFrame();}
 
+    /**
+     * Add listener to this class
+     * @param o the observer
+     */
     @Override
     public void addToMe(Observer o){
         this.addObserver(o);
@@ -197,6 +203,12 @@ public class MyModel extends Observable implements IModel{
         }
     }
 
+    /**
+     * Check if the player moves currently
+     * @param row of the pose
+     * @param col of the pose
+     * @return boolean answer
+     */
     private boolean isValidMove(int row, int col) {
         // Check if the new position is within the maze bounds
 
@@ -214,6 +226,10 @@ public class MyModel extends Observable implements IModel{
         notifyObservers("solved");
     }
 
+    /**
+     * Transform the maze to an int[]
+     * @return the new presentation of maze
+     */
     @Override
     public ArrayList<int[]> solveMaze() {
         CommunicateWithServer_SolveSearchProblem();
@@ -231,6 +247,10 @@ public class MyModel extends Observable implements IModel{
         return intSol;
     }
 
+    /**
+     * An option to save the game into a file
+     * @param file to save
+     */
     @Override
     public void save(File file) {
         try {
@@ -243,6 +263,12 @@ public class MyModel extends Observable implements IModel{
         }
     }
 
+    /**
+     * Load the game from a file
+     * @param loadfile file to load
+     * @throws IOException error
+     * @throws ClassNotFoundException error
+     */
     @Override
     public void loadGame(File loadfile) throws IOException, ClassNotFoundException {
         ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(loadfile));
@@ -256,5 +282,5 @@ public class MyModel extends Observable implements IModel{
     @Override
     public void exit() {
         stopServers();
-    }
+    } // stop the servers an exit program
 }
