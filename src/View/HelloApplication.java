@@ -16,6 +16,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 import javafx.util.Duration;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 public class HelloApplication extends Application {
@@ -25,9 +27,12 @@ public class HelloApplication extends Application {
     public static MediaPlayer BackGroundPlayer;
 
     MyViewModel myViewModel;
+    private static final Logger logger = LogManager.getLogger(HelloApplication.class);
+
 
     @Override
     public void start(Stage stage) throws IOException {
+
 
         MyModel model= MyModelGenerator.generateMyModel();
         myViewModel = new MyViewModel(model);
