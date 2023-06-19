@@ -132,10 +132,8 @@ public class newGameController implements Initializable {
                         if (validateMazeScales(rows, columns))
                         {
                             myViewModel.createNewGame(rows, columns);
-                            //TODO: add music
                         } else {
                             myViewModel.createNewGame(7, 7);
-                            //TODO: add music
                         }
                     }
                     if (stage != null)
@@ -150,7 +148,7 @@ public class newGameController implements Initializable {
 
     private boolean validateMazeScales(int rows, int columns) { return rows > 2 && columns > 2;}
     private void Alert(String alertMessage) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText(alertMessage);
         alert.show();
     }
