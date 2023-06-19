@@ -94,7 +94,6 @@ public class newGameController implements Initializable {
             stage.close();
     }
 
-
     public void createNotNew() {
         mazeDisplayer.winGame = false;
         if (IsEmpty) {

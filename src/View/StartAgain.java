@@ -4,21 +4,20 @@ import Model.IModel;
 import Model.MyModel;
 import Model.MyModelGenerator;
 import ViewModel.MyViewModel;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
-import javafx.util.Duration;
 
-
-public class HelloApplication extends Application {
+public class StartAgain {
     public Scene playerIconScene;
     public Scene gameScene;
     public Scene welcomeScene;
@@ -26,9 +25,7 @@ public class HelloApplication extends Application {
 
     MyViewModel myViewModel;
 
-    @Override
     public void start(Stage stage) throws IOException {
-
         MyModel model= MyModelGenerator.generateMyModel();
         myViewModel = new MyViewModel(model);
         model.addToMe(myViewModel);
@@ -45,13 +42,6 @@ public class HelloApplication extends Application {
         });
         BackGroundPlayer.play();
 
-        stage.setTitle("Welcome");
-        FXMLLoader welcomeFXML = new FXMLLoader(getClass().getResource("Welcome.fxml"));
-        Parent welcome = welcomeFXML.load();
-        welcomeScene = new Scene(welcome,900,600);
-        welcomeScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
-        WelcomeController welcomeController = welcomeFXML.getController();
-
         FXMLLoader playerFXML = new FXMLLoader(getClass().getResource("PlayerIcon.fxml"));
         Parent player = playerFXML.load();
         PlayerIconController playerController = playerFXML.getController();
@@ -64,10 +54,7 @@ public class HelloApplication extends Application {
         MyViewController gameController = gameFXML.getController();
         gameScene = new Scene(game,900,600);
 
-        welcomeController.setStage(stage);
-        welcomeController.setScene(playerIconScene);
-
-        playerController.setStage(welcomeController.getStage());
+        playerController.setStage(stage);
         playerController.setScene(gameScene);
 
         playerController.setMyViewModel(myViewModel);
@@ -76,7 +63,7 @@ public class HelloApplication extends Application {
 
         myViewModel.addToMe(gameController);
 
-        gameController.setStage(welcomeController.getStage());
+        gameController.setStage(stage);
         gameController.setScene(gameScene);
 
         stage.setOnCloseRequest(event -> {
@@ -97,12 +84,8 @@ public class HelloApplication extends Application {
             }
         });
 
-        stage.setScene(welcomeScene);
+        stage.setScene(playerIconScene);
         stage.show();
 
-    }
-
-    public static void main(String[] args) {
-        launch();
     }
 }
