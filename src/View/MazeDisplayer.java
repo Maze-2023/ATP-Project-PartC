@@ -138,10 +138,12 @@ public class MazeDisplayer extends Canvas {
                     if(maze[i][j] == 1)
                         //if it is a wall:
                         graphicsContext.drawImage(wall,x,y,cellWidth,cellHeight);
-                    else
-                        graphicsContext.drawImage(path,x,y,cellWidth,cellHeight);
-                    if(i==rows-1 && j==cols-1)
-                        graphicsContext.drawImage(goal,x,y,cellWidth,cellHeight);
+                    else {
+                        if (i == rows - 1 && j == cols - 1)
+                            graphicsContext.drawImage(goal, x, y, cellWidth, cellHeight);
+                        else
+                            graphicsContext.drawImage(path, x, y, cellWidth, cellHeight);
+                    }
                 }
             }
 
@@ -232,9 +234,12 @@ public class MazeDisplayer extends Canvas {
                     if(maze[i][j] == 1)
                         //if it is a wall:
                         graphicsContext.drawImage(wall,x,y,cellWidth,cellHeight);
-                    else
-                        graphicsContext.drawImage(path,x,y,cellWidth,cellHeight);
-
+                    else {
+                        if (i == rows - 1 && j == cols - 1)
+                            graphicsContext.drawImage(goal, x, y, cellWidth, cellHeight);
+                        else
+                            graphicsContext.drawImage(path, x, y, cellWidth, cellHeight);
+                    }
                     //check if in solution
                     for (int k=0;k<solution.size();k++){
                         if(solution.get(k)[0]==i &&solution.get(k)[1]==j){
@@ -244,8 +249,7 @@ public class MazeDisplayer extends Canvas {
                     }
 
                     //end point
-                    if(i==rows-1 && j==cols-1)
-                        graphicsContext.drawImage(goal,x,y,cellWidth,cellHeight);
+
                 }
             }
 

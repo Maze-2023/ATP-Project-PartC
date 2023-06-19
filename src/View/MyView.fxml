@@ -45,7 +45,7 @@
          <Pane fx:id="pane" prefHeight="400.0" prefWidth="600.0" >
             <children>
                 <VBox>
-                    <MazeDisplayer fx:id="MazeDisplayer" height="400.0" onMouseClicked="#onclick" onMouseDragged="#mouseDragged" width="600.0" BorderPane.alignment="CENTER" />
+                    <MazeDisplayer fx:id="MazeDisplayer" height="300.0" onMouseClicked="#onclick" onMouseDragged="#mouseDragged" width="500.0" BorderPane.alignment="CENTER" />
                     <HBox>
                         <Label alignment="BOTTOM_LEFT" contentDisplay="TEXT_ONLY" prefHeight="30.0" prefWidth="140.0" text="Player Location:" style="-fx-background-color:#F5F5F5">
                      <font>
