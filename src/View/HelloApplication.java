@@ -27,12 +27,11 @@ public class HelloApplication extends Application {
     public static MediaPlayer BackGroundPlayer;
 
     MyViewModel myViewModel;
-    private static final Logger logger = LogManager.getLogger(HelloApplication.class);
+    public static final Logger logger = LogManager.getLogger(HelloApplication.class);
 
 
     @Override
     public void start(Stage stage) throws IOException {
-
 
         MyModel model= MyModelGenerator.generateMyModel();
         myViewModel = new MyViewModel(model);

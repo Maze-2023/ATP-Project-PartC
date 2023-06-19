@@ -3,6 +3,7 @@ package Model;
 import IO.MyDecompressorInputStream;
 import Server.*;
 import Client.*;
+import View.HelloApplication;
 import algorithms.mazeGenerators.AMazeGenerator;
 import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.MyMazeGenerator;
@@ -14,10 +15,13 @@ import algorithms.search.Solution;
 import javafx.scene.input.KeyCode;
 
 import java.io.*;
+import java.lang.module.Configuration;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Properties;
+import java.util.concurrent.locks.Condition;
 
 public class MyModel extends Observable implements IModel{
     Maze maze;
@@ -105,12 +109,15 @@ public class MyModel extends Observable implements IModel{
                         playerC = maze.getStartPosition().getColumnIndex();
                     } catch (Exception e) {
                         e.printStackTrace();
+                        HelloApplication.logger.error("No maze");
                     }
                 }
             });
             client.communicateWithServer();
+            HelloApplication.logger.info(client + " " + rows + "," + cols);
         } catch (Exception e) {
             e.printStackTrace();
+            HelloApplication.logger.error("No client");
         }
     }
 
@@ -129,12 +136,15 @@ public class MyModel extends Observable implements IModel{
                                 solution = (Solution) fromServer.readObject(); //read generated maze (compressed with MyCompressor) from server
                             } catch (Exception e) {
                                 e.printStackTrace();
+                                HelloApplication.logger.error("No solution");
                             }
                         }
                     });
             client.communicateWithServer();
+            HelloApplication.logger.info(client + " " + Configurations.getInstance().properties.getProperty("mazeSearchingAlgorithm"));
         } catch (Exception e) {
             e.printStackTrace();
+            HelloApplication.logger.error("No client");
         }
     }
 
