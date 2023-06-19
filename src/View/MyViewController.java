@@ -2,6 +2,7 @@ package View;
 
 import ViewModel.MyViewModel;
 import javafx.beans.binding.Bindings;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -99,9 +100,9 @@ public class MyViewController implements IView, Observer {
             }
             if ((arg.equals("solved")))
             {
-//                MazeDisplayer.setSolutionObj(MYVM.getSolution());
-//                MazeDisplayer.drawSolution();
-//                position.textProperty().bind(Bindings.concat(myViewModel.stringPlayerR+","+myViewModel.stringPlayerC));
+                MazeDisplayer.setSolution(myViewModel.getSolution());
+                MazeDisplayer.drawSolution(stage);
+                position.textProperty().bind(Bindings.concat(col+","+row));
 
             }
             if ((arg.equals("loaded")))
@@ -222,5 +223,9 @@ public class MyViewController implements IView, Observer {
 
     public void onclick(MouseEvent mouseEvent) {
             MazeDisplayer.requestFocus();
+    }
+
+    public void solve(ActionEvent actionEvent) {
+        myViewModel.solve();
     }
 }

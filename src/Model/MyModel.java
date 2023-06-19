@@ -198,6 +198,11 @@ public class MyModel extends Observable implements IModel{
         return maze.getCellValue(col, row) != 1;
     }
 
+    public void solve(){
+        CommunicateWithServer_SolveSearchProblem();
+        setChanged();
+        notifyObservers("solved");
+    }
 
     @Override
     public ArrayList<int[]> solveMaze() {
@@ -213,8 +218,6 @@ public class MyModel extends Observable implements IModel{
                 intSol.add(tmp);
             }
         }
-        setChanged();
-        notifyObservers("solved");
         return intSol;
     }
 

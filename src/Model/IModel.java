@@ -24,4 +24,6 @@ public interface IModel {
 
     void loadGame(File loadfile) throws IOException, ClassNotFoundException;
     void exit();
+
+    void solve();
 }

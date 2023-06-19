@@ -1,6 +1,7 @@
 package ViewModel;
 
 import Model.IModel;
+import Model.MyModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -32,9 +33,6 @@ public class MyViewModel extends Observable implements Observer {
 
     public int getPlayerR() {return playerR;}
     public int getPlayerC() {return playerC;}
-    public ArrayList<int[]> getSol(){
-        return M.solveMaze();
-    }
     public void addToMe(Observer o){
         this.addObserver(o);
     }
@@ -118,4 +116,12 @@ public class MyViewModel extends Observable implements Observer {
         M.exit();
     }
 
+    public ArrayList<int[]> getSolution() {
+        return M.solveMaze();
+    }
+
+    public void solve()
+    {
+        M.solve();
+    }
 }

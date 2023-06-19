@@ -5,7 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
+<?import javafx.scene.Cursor?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController"
+            style="-fx-background-image: url(Images/gameBack.png); -fx-background-size: 100% 100%;">
     <top>
         <MenuBar prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <menus>
@@ -40,7 +42,7 @@
         </MenuBar>
     </top>
     <center>
-         <Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url(Images/gameBack.png); -fx-background-size: 100% 100%;">
+         <Pane prefHeight="400.0" prefWidth="600.0" >
             <children>
                 <VBox>
                     <MazeDisplayer fx:id="MazeDisplayer" height="400.0" onMouseClicked="#onclick" width="600.0" BorderPane.alignment="CENTER" />
@@ -58,4 +60,13 @@
             </children>
         </Pane>
         </center>
+    <right>
+        <Button layoutX="209.0" layoutY="276.0" mnemonicParsing="false" onAction="#solve" prefHeight="46.0" prefWidth="110.0" text="SOLVE" styleClass="button">
+            <font>
+                <Font name="SimSun" size="20.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></Button>
+    </right>
 </BorderPane>

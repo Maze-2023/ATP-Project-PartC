@@ -17,17 +17,21 @@ import javafx.stage.Stage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class MazeDisplayer extends Canvas {
     private int[][] maze;
     private static int playerR=0;
     private static int playerC=0;
-
     static MyViewModel myViewModel;
-
-    public static MediaPlayer mediaPlayer;
     public boolean winGame=false;
+
+    public void setSolution(ArrayList<int[]> solution) {
+        this.solution = solution;
+    }
+    ArrayList<int[]> solution;
     Image playerIcon;
     StringProperty MikeImg = new SimpleStringProperty("resources/Images/Mike.png");
     StringProperty SullyImg = new SimpleStringProperty("resources/Images/Sully.png");
@@ -37,6 +41,7 @@ public class MazeDisplayer extends Canvas {
     StringProperty wallImg = new SimpleStringProperty("resources/Images/wall.png");
     StringProperty goalImg = new SimpleStringProperty("resources/Images/Goal.png");
     StringProperty pathImg = new SimpleStringProperty("resources/Images/path.png");
+    StringProperty solImage = new SimpleStringProperty("resources/Images/solver.png");
 
     public void setIcon(String s) throws FileNotFoundException {
         switch (s){
@@ -136,10 +141,6 @@ public class MazeDisplayer extends Canvas {
                     }
                 }
             }
-
-            //set goal image
-
-
             //add player icon to maze
             graphicsContext.drawImage(playerIcon,playerR*cellWidth,playerC*cellHeight,cellWidth,cellHeight);
             if (playerR == maze.length - 1 && playerC == maze[0].length - 1 && !winGame) {
@@ -148,7 +149,6 @@ public class MazeDisplayer extends Canvas {
             }
         }
     }
-
 
     private void showWinnerStage(String youAreTheWinner, Stage stage) {
         try {
@@ -162,7 +162,9 @@ public class MazeDisplayer extends Canvas {
             WinController winC = gameFXML.getController();
             winC.setMyViewModel(myViewModel);
             winC.setStage(stage1);
-            Scene scene = new Scene(root, 640, 344);
+            Scene scene = new Scene(root, 640, 400);
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
+
             stage1.setScene(scene);
             winC.setScene(scene);
             stage1.initModality(Modality.APPLICATION_MODAL);
@@ -171,5 +173,79 @@ public class MazeDisplayer extends Canvas {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void drawSolution(Stage stage) {
+        try {
+            /*get Maze Canvas dimensions */
+            double width = getWidth();
+            double height = getHeight();
+            int rows = maze.length;
+            int cols = maze[0].length;
+
+            /*get single cell dimesions */
+            double cellWidth = width / maze[0].length;
+            double cellHeight = height / maze.length;
+            /* create Image instance of the Solution-step Image */
+            Image solutionPathImage = null;
+            try {
+                solutionPathImage = new Image(new FileInputStream(solImage.get()));
+            } catch (FileNotFoundException e) {
+                System.out.println("There is no Image WIN....");
+            }
+            /* create Image instance of the Wall-Brick Image */
+            Image wall = null, goal = null, path=null;
+            try {
+                wall = new Image(new FileInputStream(wallImg.get()));
+                goal = new Image(new FileInputStream(goalImg.get()));
+                path = new Image(new FileInputStream(pathImg.get()));
+            } catch (FileNotFoundException e) {
+                System.out.println("There is no file....");
+            }
+            GraphicsContext graphicsContext = getGraphicsContext2D();
+            /* reset the Maze canvas */
+            graphicsContext.clearRect(0, 0, getWidth(), getHeight());
+
+            /*Draw walls and goal point*/
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++)
+                {
+                    double x = j * cellWidth;
+                    double y = i * cellHeight;
+                    if(maze[i][j] == 1)
+                        //if it is a wall:
+                        graphicsContext.drawImage(wall,x,y,cellWidth,cellHeight);
+                    else
+                        graphicsContext.drawImage(path,x,y,cellWidth,cellHeight);
+
+                    if((i!=rows-1 && j!=cols-1) && (i!=0 && j!=0))
+                    {
+                        //find solution in maze
+                        for (int k=0;k<solution.size();k++){
+                            if(solution.get(k)[0]==i &&solution.get(k)[1]==j){
+                                graphicsContext.drawImage(solutionPathImage, j * cellWidth, i * cellHeight, cellWidth, cellHeight);
+                            }}
+                    }
+
+                    //end point
+                    if(i==rows-1 && j==cols-1)
+                    {
+                        graphicsContext.drawImage(goal,x,y,cellWidth,cellHeight);
+                    }
+                }
+            }
+
+            //add player icon to maze
+            graphicsContext.drawImage(playerIcon,playerR*cellWidth,playerC*cellHeight,cellWidth,cellHeight);
+            if (playerR == maze.length - 1 && playerC == maze[0].length - 1 && !winGame) {
+                winGame=true;
+                showWinnerStage("You Are The Winner", stage);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        /*reset the mazeSolution */
+        solution = null;
     }
 }
