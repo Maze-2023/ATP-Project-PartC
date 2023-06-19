@@ -135,7 +135,7 @@ public class MazeDisplayer extends Canvas {
 
             //add player icon to maze
             graphicsContext.drawImage(playerIcon,playerR*cellWidth,playerC*cellHeight,cellWidth,cellHeight);
-            if (playerR == maze.length && playerC == maze[0].length && winGame==false) {
+            if (playerR == maze.length && playerC == maze[0].length && !winGame) {
                 winGame=true;
                 showWinnerStage("You Are The Winner");
             }

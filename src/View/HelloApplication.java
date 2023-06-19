@@ -7,29 +7,40 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
-
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
+import javafx.util.Duration;
 
 
 public class HelloApplication extends Application {
     public Scene playerIconScene;
     public Scene gameScene;
-
     public Scene welcomeScene;
+    public static MediaPlayer BackGroundPlayer;
 
     @Override
     public void start(Stage stage) throws IOException {
+
         IModel model = new MyModel();
         MyViewModel myViewModel = new MyViewModel(model);
         model.addToMe(myViewModel);
+
+        File Wins = new File("music/open.mp3");
+        Media Song = new Media((Wins.toURI().toString()));
+        BackGroundPlayer = new MediaPlayer(Song);
+        BackGroundPlayer.setOnEndOfMedia(new Runnable() {
+            @Override
+            public void run() {
+                BackGroundPlayer.seek(Duration.ZERO);
+                BackGroundPlayer.play();
+            }
+        });
+        BackGroundPlayer.play();
 
         stage.setTitle("Welcome");
         FXMLLoader welcomeFXML = new FXMLLoader(getClass().getResource("Welcome.fxml"));
