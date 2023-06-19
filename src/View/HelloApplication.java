@@ -21,6 +21,8 @@ public class HelloApplication extends Application {
     public Scene playerIconScene;
     public Scene gameScene;
     public Scene welcomeScene;
+
+    public Scene newGame;
     public static MediaPlayer BackGroundPlayer;
 
     @Override

@@ -11,7 +11,6 @@ import java.util.ResourceBundle;
 public class PropertiesController implements Initializable {
     Stage stage;
     newGameController newGameController;
-
     public ChoiceBox<String> algorithmSearch;
     public ChoiceBox<String> mazeType;
 
