@@ -14,8 +14,8 @@
                 <Menu mnemonicParsing="false" text="File">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#newGame" text="New" />
-                        <MenuItem mnemonicParsing="false" text="Save" />
-                        <MenuItem mnemonicParsing="false" text="Load" />
+                        <MenuItem mnemonicParsing="false" text="Save" onAction="#saveFile" />
+                        <MenuItem mnemonicParsing="false" text="Load" onAction="#loadFile" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Options">

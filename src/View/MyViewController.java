@@ -10,11 +10,13 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 
 import javax.swing.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Observable;
@@ -227,5 +229,29 @@ public class MyViewController implements IView, Observer {
 
     public void solve(ActionEvent actionEvent) {
         myViewModel.solve();
+    }
+
+    @FXML
+    public void saveFile(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Maze Files", "*.maze")
+        );
+        fileChooser.setInitialFileName("My Maze To Save");
+        File saveFile = fileChooser.showSaveDialog(MazeDisplayer.getScene().getWindow());
+        if (saveFile != null) {
+            myViewModel.saveM(saveFile);
+        }
+    }
+    @FXML
+    public void loadFile(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Maze Files", "*.maze"));
+        File loadFile = fileChooser.showOpenDialog(stage);
+        if (loadFile != null) {
+            myViewModel.loadGame(loadFile);
+        }
     }
 }
