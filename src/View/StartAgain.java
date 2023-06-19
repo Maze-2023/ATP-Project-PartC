@@ -49,7 +49,6 @@ public class StartAgain {
         playerIconScene = new Scene(player,900,600);
         playerController.setStage(stage);
 
-
         FXMLLoader gameFXML = new FXMLLoader(getClass().getResource("MyView.fxml"));
         Parent game = gameFXML.load();
         MyViewController gameController = gameFXML.getController();
