@@ -203,6 +203,7 @@ public class MyViewController implements IView, Observer {
 
     public static void Win(String message) {
         try {
+            HelloApplication.BackGroundPlayer.stop();
             Stage stage = new Stage();
             stage.setTitle(message);
 
