@@ -1,6 +1,5 @@
 package View;
 
-import Model.IModel;
 import Model.MyModel;
 import Model.MyModelGenerator;
 import ViewModel.MyViewModel;
@@ -11,20 +10,22 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
+/**
+ * if the user wants to play a new game
+ * does the same as hello app
+ */
 public class StartAgain {
     public Scene playerIconScene;
     public Scene gameScene;
     public Scene welcomeScene;
     public static MediaPlayer BackGroundPlayer;
-
     MyViewModel myViewModel;
 
+    //same as hello function without the welcome page
     public void start(Stage stage) throws IOException {
         MyModel model= MyModelGenerator.generateMyModel();
         myViewModel = new MyViewModel(model);
@@ -86,6 +87,5 @@ public class StartAgain {
 
         stage.setScene(playerIconScene);
         stage.show();
-
     }
 }

@@ -1,6 +1,5 @@
 package View;
 
-import Model.IModel;
 import Model.MyModel;
 import Model.MyModelGenerator;
 import ViewModel.MyViewModel;
@@ -19,24 +18,26 @@ import javafx.util.Duration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
+/**
+ * Run game from here
+ */
 public class HelloApplication extends Application {
     public Scene playerIconScene;
     public Scene gameScene;
     public Scene welcomeScene;
     public static MediaPlayer BackGroundPlayer;
-
     MyViewModel myViewModel;
     public static final Logger logger = LogManager.getLogger(HelloApplication.class);
-
 
     @Override
     public void start(Stage stage) throws IOException {
 
+        //initialize
         MyModel model= MyModelGenerator.generateMyModel();
         myViewModel = new MyViewModel(model);
         model.addToMe(myViewModel);
 
+        //add music
         File Wins = new File("resources/music/open.mp3");
         Media Song = new Media((Wins.toURI().toString()));
         BackGroundPlayer = new MediaPlayer(Song);
@@ -49,6 +50,7 @@ public class HelloApplication extends Application {
         });
         BackGroundPlayer.play();
 
+        //begin pages and add from top to bottom
         stage.setTitle("Welcome");
         FXMLLoader welcomeFXML = new FXMLLoader(getClass().getResource("Welcome.fxml"));
         Parent welcome = welcomeFXML.load();
@@ -62,12 +64,12 @@ public class HelloApplication extends Application {
         playerIconScene = new Scene(player,900,600);
         playerController.setStage(stage);
 
-
         FXMLLoader gameFXML = new FXMLLoader(getClass().getResource("MyView.fxml"));
         Parent game = gameFXML.load();
         MyViewController gameController = gameFXML.getController();
         gameScene = new Scene(game,900,600);
 
+        //connect all the scenes and stages
         welcomeController.setStage(stage);
         welcomeController.setScene(playerIconScene);
 
@@ -78,11 +80,15 @@ public class HelloApplication extends Application {
         gameController.changeScreenSize(gameScene);
         playerController.setMyViewController(gameController);
 
+        //add listener
         myViewModel.addToMe(gameController);
 
+        //update stage
         gameController.setStage(welcomeController.getStage());
         gameController.setScene(gameScene);
 
+
+        //double check on exit
         stage.setOnCloseRequest(event -> {
             event.consume(); // Consume the event to prevent immediate window closing
 
@@ -101,6 +107,7 @@ public class HelloApplication extends Application {
             }
         });
 
+        //run from welcome scene
         stage.setScene(welcomeScene);
         stage.show();
 

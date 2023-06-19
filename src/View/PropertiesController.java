@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 public class PropertiesController implements Initializable {
@@ -52,13 +51,11 @@ public class PropertiesController implements Initializable {
         Configurations config = Configurations.getInstance();
         config.properties.setProperty("mazeGeneratingAlgorithm",mazeType.getValue());
         config.properties.setProperty("mazeSearchingAlgorithm",algorithmSearch.getValue());
-        if (algorithmSearch.getValue().equals("EmptyMazeGenerator")){
+        if (algorithmSearch.getValue().equals("EmptyMazeGenerator"))
             View.newGameController.IsEmpty =true;
-        }
-        else{
+        else
             newGameController.setEmptyMaze(false);
 
-        }
         newGameController.createNotNew();
         stage.close();
     }

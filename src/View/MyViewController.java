@@ -15,7 +15,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
-
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
@@ -26,28 +25,22 @@ import java.util.Observer;
 public class MyViewController implements IView, Observer {
     @FXML
     public View.MazeDisplayer MazeDisplayer;
-
     MyViewModel myViewModel;
     newGameController newGameController;
-
     Scene scene;
     Stage stage;
-
     @FXML
     Label position;
-
     @FXML
     public Pane pane;
     @Override
     public void setScene(Scene scene) {
         this.scene=scene;
     }
-
     @FXML
     public void setVM(MyViewModel myViewModel) {
         this.myViewModel = myViewModel;
     }
-
     @Override
     public void setStage(Stage primaryStage) {
     this.stage=primaryStage;
@@ -69,7 +62,6 @@ public class MyViewController implements IView, Observer {
         });
     }
 
-
     @Override
     public void setPlayerIcon(String s) throws Exception {
         MazeDisplayer.setIcon(s);
@@ -84,6 +76,13 @@ public class MyViewController implements IView, Observer {
     {
         newGameController=newGame;
     }
+
+    /**
+     * change according to notify
+     * @param o     the observable object.
+     * @param arg   an argument passed to the {@code notifyObservers}
+     *                 method.
+     */
     @Override
     public void update(Observable o, Object arg) {
         String message=(String)arg;
@@ -209,7 +208,6 @@ public class MyViewController implements IView, Observer {
             e.printStackTrace();
         }
     }
-
     public void Exit() throws IOException {
         int confirmed = JOptionPane.showConfirmDialog(
                 null,
@@ -262,6 +260,7 @@ public class MyViewController implements IView, Observer {
         }
     }
 
+    //move icon with mouse
     public void mouseDragged(MouseEvent mouseEvent) {
         if(myViewModel.getFrame() != null)
         {
@@ -288,6 +287,7 @@ public class MyViewController implements IView, Observer {
         }
     }
 
+    //helper to find mouse position
     private  double mousePose(int maxsize, double canvasSize, int mazeSize,double mouseEvent,double temp){
         double cellSize=canvasSize/maxsize;
         double start = (canvasSize / 2 - (cellSize * mazeSize / 2)) / cellSize;

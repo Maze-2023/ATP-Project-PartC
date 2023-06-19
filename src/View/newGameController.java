@@ -3,16 +3,13 @@ package View;
 import ViewModel.MyViewModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
-
 import static java.lang.String.valueOf;
 
 public class newGameController implements Initializable {
@@ -23,7 +20,6 @@ public class newGameController implements Initializable {
     public Button start = new Button();
     public static MyViewModel myViewModel;
     MazeDisplayer mazeDisplayer = new MazeDisplayer();
-
     public static boolean IsEmpty = false;
 
     @Override
@@ -33,59 +29,75 @@ public class newGameController implements Initializable {
         this.stage = stage;
     }
 
+    /**
+     * create the maze from definitions
+     */
     @FXML
     public void create() {
         mazeDisplayer.winGame = false;
-        if (IsEmpty) {
-            if (row == null && col == null) {
+        if (IsEmpty)
+        {
+            if (row == null && col == null)
+            {
                 myViewModel.createEmptyMaze(7, 7);
                 if (stage != null)
                     stage.close();
-            } else {
+            }
+            else
+            {
                 try {
-                    if (row != null && col != null) {
-                        if (Objects.equals(valueOf(row.getText()), "") || Objects.equals(valueOf(col.getText()), "")) {
-                            myViewModel.createEmptyMaze(7, 7);
+                    if (row != null && col != null)
+                    {
+                        if (Objects.equals(valueOf(row.getText()), "") || Objects.equals(valueOf(col.getText()), ""))
+                        {
+                            myViewModel.createEmptyMaze(11, 11);
                             Alert("No scales entered");
-                        } else
+                        }
+                        else
                             myViewModel.createEmptyMaze(Integer.parseInt(row.getText()), Integer.parseInt(col.getText()));
                         if (stage != null)
                             stage.close();
                     }
-                } catch (Exception e) {
+                }
+                catch (Exception e)
+                {
                     Alert("Please enter numbers only");
                 }
             }
-        } else {
+        }
+        else
+        {
             if (row == null || col == null)
             {
                 System.out.println("default");
-                myViewModel.createNewGame(7, 7);
+                myViewModel.createNewGame(11, 11);
             }
             else
             {
                 try {
                     if (Objects.equals(valueOf(row.getText()), "") || Objects.equals(valueOf(col.getText()), ""))
                     {
-                        myViewModel.createNewGame(7, 7);
+                        myViewModel.createNewGame(11, 11);
                         Alert("No scales entered");
-                    } else
+                    }
+                    else
                     {
                         int rows = Integer.parseInt(row.getText());
                         int columns = Integer.parseInt(col.getText());
                         if (validateMazeScales(rows, columns))
-                        {
                             myViewModel.createNewGame(rows, columns);
-                            //TODO: add music
-                        } else {
+
+                        else
+                        {
                             myViewModel.createNewGame(7, 7);
                             Alert("You entered small scales...");
-                            //TODO: add music
                         }
                     }
                     if (stage != null)
                         stage.close();
-                } catch (Exception e) {
+                }
+                catch (Exception e)
+                {
                     Alert("Please enter numbers only");
                 }
             }
@@ -94,52 +106,57 @@ public class newGameController implements Initializable {
             stage.close();
     }
 
+    /**
+     * create the maze without input from user
+     */
     public void createNotNew() {
         mazeDisplayer.winGame = false;
-        if (IsEmpty) {
-            if (row == null && col == null) {
+        if (IsEmpty)
+        {
+            if (row == null && col == null)
+            {
                 myViewModel.createEmptyMaze(7, 7);
                 if (stage != null)
                     stage.close();
-            } else {
+            } else
+            {
                 try {
-                    if (row != null && col != null) {
-                        if (Objects.equals(valueOf(row.getText()), "") || Objects.equals(valueOf(col.getText()), "")) {
+                    if (row != null && col != null)
+                    {
+                        if (Objects.equals(valueOf(row.getText()), "") || Objects.equals(valueOf(col.getText()), ""))
                             myViewModel.createEmptyMaze(7, 7);
-                        } else
+                        else
                             myViewModel.createEmptyMaze(Integer.parseInt(row.getText()), Integer.parseInt(col.getText()));
                         if (stage != null)
                             stage.close();
                     }
-                } catch (Exception e) {
                 }
+                catch (Exception e){ }
+
             }
-        } else {
+        }
+        else
+        {
             if (row == null || col == null)
-            {
                 myViewModel.createNewGame(7, 7);
-            }
             else
             {
                 try {
                     if (Objects.equals(valueOf(row.getText()), "") || Objects.equals(valueOf(col.getText()), ""))
-                    {
                         myViewModel.createNewGame(7, 7);
-                    } else
+                    else
                     {
                         int rows = Integer.parseInt(row.getText());
                         int columns = Integer.parseInt(col.getText());
                         if (validateMazeScales(rows, columns))
-                        {
                             myViewModel.createNewGame(rows, columns);
-                        } else {
+                        else
                             myViewModel.createNewGame(7, 7);
-                        }
                     }
                     if (stage != null)
                         stage.close();
-                } catch (Exception ignored) {
                 }
+                catch (Exception ignored) {}
             }
         }
         if (stage != null)
@@ -153,6 +170,10 @@ public class newGameController implements Initializable {
         alert.show();
     }
 
+    /**
+     * if the algorithm is of an empty maze
+     * @param b set the boolean accordingly
+     */
     public void setEmptyMaze(boolean b) {
         MyViewModel.IsEmpty=b;
         myViewModel.emptyMaze=null;
