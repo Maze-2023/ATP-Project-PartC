@@ -184,8 +184,8 @@ public class MazeDisplayer extends Canvas {
             int cols = maze[0].length;
 
             /*get single cell dimesions */
-            double cellWidth = width / maze[0].length;
-            double cellHeight = height / maze.length;
+            double cellWidth = width / cols;
+            double cellHeight = height / rows;
             /* create Image instance of the Solution-step Image */
             Image solutionPathImage = null;
             try {
@@ -218,13 +218,11 @@ public class MazeDisplayer extends Canvas {
                     else
                         graphicsContext.drawImage(path,x,y,cellWidth,cellHeight);
 
-                    if((i!=rows-1 && j!=cols-1) && (i!=0 && j!=0))
-                    {
-                        //find solution in maze
-                        for (int k=0;k<solution.size();k++){
-                            if(solution.get(k)[0]==i &&solution.get(k)[1]==j){
+                    for (int k=0;k<solution.size();k++){
+                        if(solution.get(k)[0]==i &&solution.get(k)[1]==j){
+                            if(!((i == 0 && j == 0) || (i == rows - 1 && j == cols -1)))
                                 graphicsContext.drawImage(solutionPathImage, j * cellWidth, i * cellHeight, cellWidth, cellHeight);
-                            }}
+                        }
                     }
 
                     //end point
