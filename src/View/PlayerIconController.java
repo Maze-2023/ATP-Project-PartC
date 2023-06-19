@@ -3,13 +3,19 @@ package View;
 import ViewModel.MyViewModel;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
+import java.io.File;
 
 public class PlayerIconController {
     Stage stage;
     Scene scene;
     MyViewController myViewController;
     MyViewModel myViewModel;
+    public static MediaPlayer BackGroundPlayer;
 
     public void setScene(Scene scene) {
         this.scene = scene;
@@ -52,6 +58,18 @@ public class PlayerIconController {
 
     public void iconChosen()
     {
+        HelloApplication.BackGroundPlayer.stop();
+        File open = new File("music/openSong.mp3");
+        Media Song = new Media((open.toURI().toString()));
+        BackGroundPlayer = new MediaPlayer(Song);
+        BackGroundPlayer.setOnEndOfMedia(new Runnable() {
+            @Override
+            public void run() {
+                BackGroundPlayer.seek(Duration.ZERO);
+                BackGroundPlayer.play();
+            }
+        });
+        BackGroundPlayer.play();
         stage.setScene(scene);
         //update bindings
         newGameController.myViewModel=myViewModel;
