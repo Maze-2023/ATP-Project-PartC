@@ -53,24 +53,19 @@ public class MyViewController implements IView, Observer {
     this.stage=primaryStage;
     }
 
+    /**
+     * Can scroll to resize the screen
+     * @param scene of the screen
+     */
     @Override
     public void changeScreenSize(Scene scene) {
         MazeDisplayer.widthProperty().bind(pane.widthProperty());
         MazeDisplayer.heightProperty().bind(pane.heightProperty());
-
         scene.setOnScroll(event -> {
             double scaleFactor = event.getDeltaY() > 0 ? 1.1 : 0.9;
             pane.setScaleX(pane.getScaleX() * scaleFactor);
             pane.setScaleY(pane.getScaleY() * scaleFactor);
             event.consume();
-        });
-
-        scene.widthProperty().addListener((observable, oldValue, newValue) -> {
-            MazeDisplayer.setWidth(newValue.doubleValue() / pane.getScaleX());
-        });
-
-        scene.heightProperty().addListener((observable, oldValue, newValue) -> {
-            MazeDisplayer.setHeight(newValue.doubleValue() / pane.getScaleY());
         });
     }
 

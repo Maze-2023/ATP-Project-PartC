@@ -42,7 +42,7 @@ public class WinController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Create a Media instance with the URL or file path of your video
-        File videoUrl = new File("music/win.mp4");
+        File videoUrl = new File("resources/music/win.mp4");
         Media media = new Media(videoUrl.toURI().toString());
 
         // Create a MediaPlayer and set the Media

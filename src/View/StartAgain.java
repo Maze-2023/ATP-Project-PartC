@@ -30,7 +30,7 @@ public class StartAgain {
         myViewModel = new MyViewModel(model);
         model.addToMe(myViewModel);
 
-        File Wins = new File("music/open.mp3");
+        File Wins = new File("resources/music/open.mp3");
         Media Song = new Media((Wins.toURI().toString()));
         BackGroundPlayer = new MediaPlayer(Song);
         BackGroundPlayer.setOnEndOfMedia(new Runnable() {

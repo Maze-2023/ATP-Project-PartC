@@ -33,7 +33,7 @@ public class HelloApplication extends Application {
         myViewModel = new MyViewModel(model);
         model.addToMe(myViewModel);
 
-        File Wins = new File("music/open.mp3");
+        File Wins = new File("resources/music/open.mp3");
         Media Song = new Media((Wins.toURI().toString()));
         BackGroundPlayer = new MediaPlayer(Song);
         BackGroundPlayer.setOnEndOfMedia(new Runnable() {
@@ -71,7 +71,7 @@ public class HelloApplication extends Application {
         playerController.setScene(gameScene);
 
         playerController.setMyViewModel(myViewModel);
-        //gameController.changeScreenSize(gameScene);
+        gameController.changeScreenSize(gameScene);
         playerController.setMyViewController(gameController);
 
         myViewModel.addToMe(gameController);
