@@ -22,14 +22,14 @@ public class MazeDisplayer extends Canvas {
     public static MediaPlayer mediaPlayer;
     public boolean winGame=false;
     Image playerIcon;
-    StringProperty MikeImg = new SimpleStringProperty("src/main/resources/Images/Mike.png");
-    StringProperty SullyImg = new SimpleStringProperty("src/main/resources/Images/Sully.png");
-    StringProperty BooImg = new SimpleStringProperty("src/main/resources/Images/boo.png");
-    StringProperty RozImg = new SimpleStringProperty("src/main/resources/Images/roz.png");
-    StringProperty CeliaImg = new SimpleStringProperty("src/main/resources/Images/Ceila.png");
-    StringProperty wallImg = new SimpleStringProperty("src/main/resources/Images/wall.png");
-    StringProperty goalImg = new SimpleStringProperty("src/main/resources/Images/Goal.png");
-    StringProperty pathImg = new SimpleStringProperty("src/main/resources/Images/path.png");
+    StringProperty MikeImg = new SimpleStringProperty("resources/Images/Mike.png");
+    StringProperty SullyImg = new SimpleStringProperty("resources/Images/Sully.png");
+    StringProperty BooImg = new SimpleStringProperty("resources/Images/boo.png");
+    StringProperty RozImg = new SimpleStringProperty("resources/Images/roz.png");
+    StringProperty CeliaImg = new SimpleStringProperty("resources/Images/Ceila.png");
+    StringProperty wallImg = new SimpleStringProperty("resources/Images/wall.png");
+    StringProperty goalImg = new SimpleStringProperty("resources/Images/Goal.png");
+    StringProperty pathImg = new SimpleStringProperty("resources/Images/path.png");
 
     public void setIcon(String s) throws FileNotFoundException {
         switch (s){

@@ -203,13 +203,13 @@ public class MyViewController implements IView, Observer {
 
     public static void Win(String message) {
         try {
-            HelloApplication.BackGroundPlayer.stop();
+            PlayerIconController.BackGroundPlayer.stop();
             Stage stage = new Stage();
             stage.setTitle(message);
 
             Parent root = FXMLLoader.load(MyViewController.class.getResource("Win.fxml"));
 
-            Scene scene = new Scene(root, 748, 400);
+            Scene scene = new Scene(root, 640, 344);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
