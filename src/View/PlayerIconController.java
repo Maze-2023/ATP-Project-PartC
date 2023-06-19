@@ -60,7 +60,7 @@ public class PlayerIconController implements Initializable {
     public void iconChosen()
     {
         //play music
-        File open = new File("resources/music/openSong.mp3");
+        File open = new File("resources/music/playGame.mp3");
         Media Song = new Media((open.toURI().toString()));
         BackGroundPlayer = new MediaPlayer(Song);
         BackGroundPlayer.setOnEndOfMedia(new Runnable() {
