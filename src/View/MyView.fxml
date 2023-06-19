@@ -6,8 +6,8 @@
 <?import javafx.scene.text.*?>
 
 <?import javafx.scene.Cursor?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController"
-            style="-fx-background-image: url(Images/gameBack.png); -fx-background-size: 100% 100%;">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController"
+            style="-fx-background-image: url(Images/gameBack.jpeg); -fx-background-size: 100% 100%;">
     <top>
         <MenuBar prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <menus>
