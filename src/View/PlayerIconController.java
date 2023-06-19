@@ -76,6 +76,6 @@ public class PlayerIconController {
         newGameController createGame = new newGameController();
         myViewController.setNewGame(createGame);
         //begin
-        createGame.create();
+        createGame.createNotNew();
     }
 }

@@ -59,7 +59,7 @@ public class PropertiesController implements Initializable {
             newGameController.setEmptyMaze(false);
 
         }
-        newGameController.create();
+        newGameController.createNotNew();
         stage.close();
     }
 }

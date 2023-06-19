@@ -94,6 +94,61 @@ public class newGameController implements Initializable {
             stage.close();
     }
 
+
+    public void createNotNew() {
+        mazeDisplayer.winGame = false;
+        if (IsEmpty) {
+            if (row == null && col == null) {
+                myViewModel.createEmptyMaze(7, 7);
+                if (stage != null)
+                    stage.close();
+            } else {
+                try {
+                    if (row != null && col != null) {
+                        if (Objects.equals(valueOf(row.getText()), "") || Objects.equals(valueOf(col.getText()), "")) {
+                            myViewModel.createEmptyMaze(7, 7);
+                        } else
+                            myViewModel.createEmptyMaze(Integer.parseInt(row.getText()), Integer.parseInt(col.getText()));
+                        if (stage != null)
+                            stage.close();
+                    }
+                } catch (Exception e) {
+                }
+            }
+        } else {
+            if (row == null || col == null)
+            {
+                myViewModel.createNewGame(7, 7);
+            }
+            else
+            {
+                try {
+                    if (Objects.equals(valueOf(row.getText()), "") || Objects.equals(valueOf(col.getText()), ""))
+                    {
+                        myViewModel.createNewGame(7, 7);
+                    } else
+                    {
+                        int rows = Integer.parseInt(row.getText());
+                        int columns = Integer.parseInt(col.getText());
+                        if (validateMazeScales(rows, columns))
+                        {
+                            myViewModel.createNewGame(rows, columns);
+                            //TODO: add music
+                        } else {
+                            myViewModel.createNewGame(7, 7);
+                            //TODO: add music
+                        }
+                    }
+                    if (stage != null)
+                        stage.close();
+                } catch (Exception ignored) {
+                }
+            }
+        }
+        if (stage != null)
+            stage.close();
+    }
+
     private boolean validateMazeScales(int rows, int columns) { return rows > 2 && columns > 2;}
     private void Alert(String alertMessage) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
