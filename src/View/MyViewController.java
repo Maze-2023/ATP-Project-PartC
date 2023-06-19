@@ -279,18 +279,17 @@ public class MyViewController implements IView, Observer {
             double mousePosY=mousePose(maximumSize,MazeDisplayer.getWidth(),myViewModel.getFrame()[0].length,mouseEvent.getY(),MazeDisplayer.getHeight() / maximumSize);
 
             //player moves up
-            if ( mousePosX == myViewModel.getPlayerC() && mousePosY < myViewModel.getPlayerR() )
+            if ( mousePosX == myViewModel.getPlayerR() && mousePosY < myViewModel.getPlayerC() )
                 myViewModel.movePlayer(KeyCode.DIGIT8);
                 //player move right
-            else if (mousePosY == myViewModel.getPlayerR() && mousePosX > myViewModel.getPlayerC() )
+            else if (mousePosY == myViewModel.getPlayerC() && mousePosX > myViewModel.getPlayerR() )
                 myViewModel.movePlayer(KeyCode.DIGIT6);
             //player move left
-            else if ( mousePosY == myViewModel.getPlayerR() && mousePosX < myViewModel.getPlayerC() )
+            else if ( mousePosY == myViewModel.getPlayerC() && mousePosX < myViewModel.getPlayerR() )
                 myViewModel.movePlayer(KeyCode.DIGIT4);
             //player move down
-            else if (mousePosX == myViewModel.getPlayerC() && mousePosY > myViewModel.getPlayerR()  )
+            else if (mousePosX == myViewModel.getPlayerR() && mousePosY > myViewModel.getPlayerC()  )
                 myViewModel.movePlayer(KeyCode.DIGIT2);
-
         }
     }
 
